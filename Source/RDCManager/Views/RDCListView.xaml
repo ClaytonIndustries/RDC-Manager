@@ -6,13 +6,6 @@
              xmlns:local="clr-namespace:RDCManager.Views"
              mc:Ignorable="d">
     <StackPanel>
-        <ComboBox ItemsSource="{Binding RDCConnections}" SelectedItem="{Binding SelectedRDCConnection}" Height="30">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" FontSize="16"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -20,19 +13,22 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
-                <RowDefinition Height="35" />
             </Grid.RowDefinitions>
 
             <Button x:Name="New" Grid.Column="0" Content="Add" />
             <Button x:Name="Delete" Grid.Column="1" Content="Delete" />
-            <Button x:Name="Start" Grid.Row="1" Grid.ColumnSpan="2" Content="Start" />
         </Grid>
-        <!--<ListView ItemsSource="{Binding RDCConnections}" SelectedItem="{Binding SelectedRDCConnection}" Height="100">
-            <ListView.ItemTemplate>
+        <ComboBox ItemsSource="{Binding RDCConnections}" SelectedItem="{Binding SelectedRDCConnection}" Height="30" HorizontalContentAlignment="Center">
+            <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" FontSize="16"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding DisplayName}" FontSize="16" />
+                        <TextBlock Text=" - " FontSize="16" />
+                        <TextBlock Text="{Binding MachineName}" FontSize="16" />
+                    </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="Start" Grid.Row="1" Grid.ColumnSpan="2" Content="Start" Height="30" />
     </StackPanel>
 </UserControl>
