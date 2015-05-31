@@ -63,7 +63,7 @@ namespace RDCManager.ViewModels
             {
                 _fileAccess.Write("RDCConnections.xml", RDCConnections);
             }
-            catch(System.Exception e)
+            catch
             {
             }
         }

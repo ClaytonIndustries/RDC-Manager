@@ -793,6 +793,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -809,6 +825,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -2615,12 +2639,23 @@
             {
             "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_8FD86641DF384425BA07BD1134E8A29F"
+                    {
+                    "Name" = "8:Assets"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_2F17EE37E1CD4246A17875D4951F0948"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_BF9516D50DE74F0184EC624B0C446467"
@@ -2651,7 +2686,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RDC Manager"
         "ProductCode" = "8:{6A267403-A575-4EBE-B787-E2FD62D598B6}"
-        "PackageCode" = "8:{46C7E4AA-2C7F-42D8-A254-1C195F9B1C7E}"
+        "PackageCode" = "8:{9C7321BA-9CC1-41F4-A984-B4C807821752}"
         "UpgradeCode" = "8:{7FCBEB64-B669-4822-8DE4-454359FB5F80}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -2692,20 +2727,6 @@
                     "Transitive" = "11:FALSE"
                         "Keys"
                         {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_3C2985C77E3545E6A21414BDC07E9170"
-                            {
-                            "Name" = "8:[Manufacturer]"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                }
-                                "Values"
-                                {
-                                }
-                            }
                         }
                         "Values"
                         {
@@ -2726,70 +2747,6 @@
                     "Transitive" = "11:FALSE"
                         "Keys"
                         {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_D75976B29BC74575B3F449879E64A1B2"
-                            {
-                            "Name" = "8:MICROSOFT"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:TRUE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_813D3A2983BA4A32851D5694EB2FE68F"
-                                    {
-                                    "Name" = "8:Windows"
-                                    "Condition" = "8:"
-                                    "AlwaysCreate" = "11:TRUE"
-                                    "DeleteAtUninstall" = "11:FALSE"
-                                    "Transitive" = "11:FALSE"
-                                        "Keys"
-                                        {
-                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_F547A2FF3B274872BAACFCD449CA50B3"
-                                            {
-                                            "Name" = "8:CurrentVersion"
-                                            "Condition" = "8:"
-                                            "AlwaysCreate" = "11:TRUE"
-                                            "DeleteAtUninstall" = "11:FALSE"
-                                            "Transitive" = "11:FALSE"
-                                                "Keys"
-                                                {
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_1C318898FC754D8EBAFF0CD00E484F3A"
-                                                    {
-                                                    "Name" = "8:Run"
-                                                    "Condition" = "8:"
-                                                    "AlwaysCreate" = "11:TRUE"
-                                                    "DeleteAtUninstall" = "11:FALSE"
-                                                    "Transitive" = "11:FALSE"
-                                                        "Keys"
-                                                        {
-                                                        }
-                                                        "Values"
-                                                        {
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_E591F3A831FE4E13B4D5645057A76A58"
-                                                            {
-                                                            "Name" = "8:RDC Manager"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:vcvcvccvvc"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                "Values"
-                                                {
-                                                }
-                                            }
-                                        }
-                                        "Values"
-                                        {
-                                        }
-                                    }
-                                }
-                                "Values"
-                                {
-                                }
-                            }
                         }
                         "Values"
                         {
@@ -2821,6 +2778,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D2DB49D4C6F04451938AD13C36D4BAB0"
+            {
+            "Name" = "8:RDC Manager"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
+            "Folder" = "8:_70AA6A115D3C4C67A9B269EE664D43B9"
+            "WorkingFolder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
+            "Icon" = "8:_105DD390409A40989CC02EFAEAC3FAD9"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -3220,62 +3191,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1902D1C88FC64BEF91EB461E6B29DD0E"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:XmlSerializer"
-            "OutputProjectGuid" = "8:{86076044-F69E-47F7-A2F3-7E3432DA8C6C}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6159C4C1610645B2B725D99A8FD56B11"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
-            "OutputProjectGuid" = "8:{86076044-F69E-47F7-A2F3-7E3432DA8C6C}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9A36A8A8E6C24FB9900841A32CC698D2"
             {
             "SourcePath" = "8:..\\RDCManager\\obj\\Debug\\RDCManager.exe"
@@ -3298,34 +3213,6 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{86076044-F69E-47F7-A2F3-7E3432DA8C6C}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9D7B5FC0FFB6463F966873D5934E7A94"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:ContentFiles"
             "OutputProjectGuid" = "8:{86076044-F69E-47F7-A2F3-7E3432DA8C6C}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"

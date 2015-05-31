@@ -98,7 +98,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helpers\RegistryHelper.cs" />
     <Compile Include="Messages\NewRDCConnectionMessage.cs" />
     <Compile Include="Models\IFileAccess.cs" />
     <Compile Include="Models\IRDCStarter.cs" />
@@ -149,9 +148,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\TrayIcon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="Assets\TrayIcon.ico" />
     <Resource Include="Assets\WindowIcon.png" />
   </ItemGroup>
   <ItemGroup>
