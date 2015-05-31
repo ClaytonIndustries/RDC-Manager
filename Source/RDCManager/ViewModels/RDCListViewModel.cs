@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Dynamic;
+using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
 using RDCManager.Messages;
@@ -16,24 +16,56 @@ namespace RDCManager.ViewModels
             private set;
         }
 
+        private RDCConnection _selectedRDCConnection;
+
         public RDCConnection SelectedRDCConnection
         {
-            get;
-            set;
+            get { return _selectedRDCConnection; }
+            set { _selectedRDCConnection = value; NotifyOfPropertyChange(() => SelectedRDCConnection); }
         }
 
         private readonly IEventAggregator _events;
 
         private readonly IRDCStarter _rdcStarter;
 
-        public RDCListViewModel(IEventAggregator events, IRDCStarter rdcStarter)
+        private readonly IFileAccess _fileAccess;
+
+        public RDCListViewModel(IEventAggregator events, IRDCStarter rdcStarter, IFileAccess fileAccess)
         {
             _events = events;
             _events.Subscribe(this);
 
             _rdcStarter = rdcStarter;
 
-            RDCConnections = new ObservableCollection<RDCConnection>();
+            _fileAccess = fileAccess;
+        }
+
+        protected override void OnActivate()
+        {
+            try
+            {
+                RDCConnections = _fileAccess.Read<ObservableCollection<RDCConnection>>("RDCConnections.xml");
+
+                if (RDCConnections.Count > 0)
+                {
+                    SelectedRDCConnection = RDCConnections.First();
+                }
+            }
+            catch
+            {
+                RDCConnections = new ObservableCollection<RDCConnection>();
+            }
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            try
+            {
+                _fileAccess.Write("RDCConnections.xml", RDCConnections);
+            }
+            catch(System.Exception e)
+            {
+            }
         }
 
         public void New()
@@ -66,6 +98,11 @@ namespace RDCManager.ViewModels
         public void Handle(NewRDCConnectionMessage message)
         {
             RDCConnections.Add(new RDCConnection(message.DisplayName, message.MachineName));
+
+            if (RDCConnections.Count == 1)
+            {
+                SelectedRDCConnection = RDCConnections.First();
+            }
         }
     }
 }

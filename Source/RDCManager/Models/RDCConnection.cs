@@ -5,19 +5,23 @@
         public string DisplayName
         {
             get;
-            private set;
+            set;
         }
 
         public string MachineName
         {
             get;
-            private set;
+            set;
         }
 
         public RDCConnection(string displayName, string machineName)
         {
             DisplayName = displayName;
             MachineName = machineName;
+        }
+
+        public RDCConnection()
+        {
         }
     }
 }

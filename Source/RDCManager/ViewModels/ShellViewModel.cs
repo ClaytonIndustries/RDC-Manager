@@ -15,7 +15,17 @@ namespace RDCManager.ViewModels
         {
             DisplayName = "RDC Manager";
 
-            RDCListVM = new RDCListViewModel(new EventAggregator(), new RDCStarter());
+            RDCListVM = new RDCListViewModel(new EventAggregator(), new RDCStarter(), new XmlFileAccess());
+        }
+
+        protected override void OnActivate()
+        {
+            RDCListVM.Activate();
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            RDCListVM.Deactivate(true);
         }
     }
 }
