@@ -148,7 +148,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\TrayIcon.ico" />
+    <None Include="Assets\TrayIcon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Resource Include="Assets\WindowIcon.png" />
   </ItemGroup>
   <ItemGroup>

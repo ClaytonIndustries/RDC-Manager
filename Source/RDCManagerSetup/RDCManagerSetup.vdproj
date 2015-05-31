@@ -267,6 +267,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_817D26A787D840D6B0C98B31EBE6D446"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9098048C1C3EA96CD09573282DCA92E1"
         "OwnerKey" = "8:_9A36A8A8E6C24FB9900841A32CC698D2"
         "MsmSig" = "8:_UNDEFINED"
@@ -1843,6 +1849,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_817D26A787D840D6B0C98B31EBE6D446"
+            {
+            "SourcePath" = "8:..\\RDCManager\\Assets\\TrayIcon.ico"
+            "TargetName" = "8:TrayIcon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_8FD86641DF384425BA07BD1134E8A29F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9098048C1C3EA96CD09573282DCA92E1"
             {
             "AssemblyRegister" = "3:1"
@@ -2686,7 +2712,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RDC Manager"
         "ProductCode" = "8:{6A267403-A575-4EBE-B787-E2FD62D598B6}"
-        "PackageCode" = "8:{9C7321BA-9CC1-41F4-A984-B4C807821752}"
+        "PackageCode" = "8:{06C486E5-3CCF-46CF-BB98-CFC0B57547BD}"
         "UpgradeCode" = "8:{7FCBEB64-B669-4822-8DE4-454359FB5F80}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -2747,6 +2773,70 @@
                     "Transitive" = "11:FALSE"
                         "Keys"
                         {
+                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_E64A3812AAC84D5FAFA190DE40D24AF3"
+                            {
+                            "Name" = "8:MICROSOFT"
+                            "Condition" = "8:"
+                            "AlwaysCreate" = "11:FALSE"
+                            "DeleteAtUninstall" = "11:FALSE"
+                            "Transitive" = "11:FALSE"
+                                "Keys"
+                                {
+                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_F14046D5EA1A47679191DA35BD50C94A"
+                                    {
+                                    "Name" = "8:Windows"
+                                    "Condition" = "8:"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "DeleteAtUninstall" = "11:FALSE"
+                                    "Transitive" = "11:FALSE"
+                                        "Keys"
+                                        {
+                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_EBA0B279F31D44AFB89BD612DBFAE03D"
+                                            {
+                                            "Name" = "8:CurrentVersion"
+                                            "Condition" = "8:"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "DeleteAtUninstall" = "11:FALSE"
+                                            "Transitive" = "11:FALSE"
+                                                "Keys"
+                                                {
+                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_F8E7434920904795B6C02C689CA703E3"
+                                                    {
+                                                    "Name" = "8:Run"
+                                                    "Condition" = "8:"
+                                                    "AlwaysCreate" = "11:FALSE"
+                                                    "DeleteAtUninstall" = "11:FALSE"
+                                                    "Transitive" = "11:FALSE"
+                                                        "Keys"
+                                                        {
+                                                        }
+                                                        "Values"
+                                                        {
+                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_668675B5B0124FF5B0F4085FC234202B"
+                                                            {
+                                                            "Name" = "8:RDC Manager"
+                                                            "Condition" = "8:"
+                                                            "Transitive" = "11:FALSE"
+                                                            "ValueTypes" = "3:1"
+                                                            "Value" = "8:[TARGETDIR]RDCManager.exe"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                "Values"
+                                                {
+                                                }
+                                            }
+                                        }
+                                        "Values"
+                                        {
+                                        }
+                                    }
+                                }
+                                "Values"
+                                {
+                                }
+                            }
                         }
                         "Values"
                         {
@@ -2778,7 +2868,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D2DB49D4C6F04451938AD13C36D4BAB0"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_58B884093D0345F4B83602591ED0D8ED"
             {
             "Name" = "8:RDC Manager"
             "Arguments" = "8:"
@@ -2786,7 +2876,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
+            "Target" = "8:_9A36A8A8E6C24FB9900841A32CC698D2"
             "Folder" = "8:_70AA6A115D3C4C67A9B269EE664D43B9"
             "WorkingFolder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
             "Icon" = "8:_105DD390409A40989CC02EFAEAC3FAD9"
