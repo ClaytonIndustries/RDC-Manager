@@ -1,10 +1,12 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 using Caliburn.Micro;
 using RDCManager.ViewModels;
-using System.Windows.Media.Imaging;
-using System;
 
 namespace RDCManager.Bootstrappers
 {
@@ -29,22 +31,33 @@ namespace RDCManager.Bootstrappers
             Application.MainWindow.Closing += MainWindow_Closing;
         }
 
-        private static void ConfigureMainWindow()
+        private void ConfigureMainWindow()
         {
             App.Current.MainWindow.SizeToContent = SizeToContent.Manual;
             App.Current.MainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             App.Current.MainWindow.ResizeMode = ResizeMode.CanMinimize;
             App.Current.MainWindow.MinWidth = 300;
             App.Current.MainWindow.Icon = new BitmapImage(new Uri("pack://application:,,,/RDCManager;component/Assets/WindowIcon.png"));
-            App.Current.MainWindow.WindowState = WindowState.Minimized;
-            App.Current.MainWindow.Hide();
+
+            string[] args = Environment.GetCommandLineArgs();
+
+            if (ShouldStartMinimised())
+            {
+                App.Current.MainWindow.WindowState = WindowState.Minimized;
+                App.Current.MainWindow.Hide();
+            }
+        }
+
+        private bool ShouldStartMinimised()
+        {
+            return Environment.GetCommandLineArgs().ToList().Contains("-m");
         }
 
         private void CreateTrayIcon()
         {
             notifyIcon = new NotifyIcon();
 
-            notifyIcon.Icon = new Icon("Assets\\TrayIcon.ico");
+            notifyIcon.Icon = new Icon( GetTrayIconPath() );
             notifyIcon.Visible = true;
             notifyIcon.Text = "RDC Manager";
 
@@ -62,6 +75,13 @@ namespace RDCManager.Bootstrappers
                 Application.MainWindow.WindowState = System.Windows.WindowState.Normal;
                 Application.MainWindow.Focus();
             };
+        }
+
+        private string GetTrayIconPath()
+        {
+            string exeLocation = Environment.GetCommandLineArgs().First();
+            string workingDir = exeLocation.Substring(0, exeLocation.LastIndexOf("\\") + 1);
+            return Path.Combine(workingDir, "Assets\\TrayIcon.ico");
         }
 
         private void TrayIconOpenClicked(object sender, System.EventArgs e)
