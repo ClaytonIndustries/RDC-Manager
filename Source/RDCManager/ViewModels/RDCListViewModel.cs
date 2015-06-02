@@ -10,10 +10,12 @@ namespace RDCManager.ViewModels
 {
     public class RDCListViewModel : Screen, IHandle<NewRDCConnectionMessage>
     {
+        private ObservableCollection<RDCConnection> _rdcCConnections;
+
         public ObservableCollection<RDCConnection> RDCConnections
         {
-            get;
-            private set;
+            get { return _rdcCConnections; }
+            private set { _rdcCConnections = value; NotifyOfPropertyChange(() => RDCConnections); }
         }
 
         private RDCConnection _selectedRDCConnection;
@@ -84,6 +86,11 @@ namespace RDCManager.ViewModels
             if(SelectedRDCConnection != null)
             {
                 RDCConnections.Remove(SelectedRDCConnection);
+
+                if(RDCConnections.Count > 0)
+                {
+                    SelectedRDCConnection = RDCConnections.First();
+                }
             }
         }
 
@@ -99,10 +106,17 @@ namespace RDCManager.ViewModels
         {
             RDCConnections.Add(new RDCConnection(message.DisplayName, message.MachineName));
 
+            ListRDCConnectionsAlphabetically();
+
             if (RDCConnections.Count == 1)
             {
                 SelectedRDCConnection = RDCConnections.First();
             }
+        }
+
+        private void ListRDCConnectionsAlphabetically()
+        {
+            RDCConnections = new ObservableCollection<RDCConnection>(RDCConnections.OrderBy(x => x.DisplayName));
         }
     }
 }
