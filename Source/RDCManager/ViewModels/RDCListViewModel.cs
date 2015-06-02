@@ -46,7 +46,7 @@ namespace RDCManager.ViewModels
         {
             try
             {
-                RDCConnections = _fileAccess.Read<ObservableCollection<RDCConnection>>("RDCConnections.xml");
+                RDCConnections = _fileAccess.Read<ObservableCollection<RDCConnection>>(GetSaveLocation());
 
                 if (RDCConnections.Count > 0)
                 {
@@ -63,11 +63,16 @@ namespace RDCManager.ViewModels
         {
             try
             {
-                _fileAccess.Write("RDCConnections.xml", RDCConnections);
+                _fileAccess.Write(GetSaveLocation(), RDCConnections);
             }
             catch
             {
             }
+        }
+
+        private string GetSaveLocation()
+        {
+            return System.AppDomain.CurrentDomain.BaseDirectory + "RDCConnections.xml";
         }
 
         public void New()
@@ -83,11 +88,11 @@ namespace RDCManager.ViewModels
 
         public void Delete()
         {
-            if(SelectedRDCConnection != null)
+            if (SelectedRDCConnection != null)
             {
                 RDCConnections.Remove(SelectedRDCConnection);
 
-                if(RDCConnections.Count > 0)
+                if (RDCConnections.Count > 0)
                 {
                     SelectedRDCConnection = RDCConnections.First();
                 }
@@ -96,7 +101,7 @@ namespace RDCManager.ViewModels
 
         public void Start()
         {
-            if(SelectedRDCConnection != null)
+            if (SelectedRDCConnection != null)
             {
                 _rdcStarter.StartRDCSession(SelectedRDCConnection.MachineName);
             }

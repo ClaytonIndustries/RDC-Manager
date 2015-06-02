@@ -57,7 +57,7 @@ namespace RDCManager.Bootstrappers
         {
             notifyIcon = new NotifyIcon();
 
-            notifyIcon.Icon = new Icon( GetTrayIconPath() );
+            notifyIcon.Icon = new Icon(GetTrayIconPath());
             notifyIcon.Visible = true;
             notifyIcon.Text = "RDC Manager";
 
@@ -79,9 +79,7 @@ namespace RDCManager.Bootstrappers
 
         private string GetTrayIconPath()
         {
-            string exeLocation = Environment.GetCommandLineArgs().First();
-            string workingDir = exeLocation.Substring(0, exeLocation.LastIndexOf("\\") + 1);
-            return Path.Combine(workingDir, "Assets\\TrayIcon.ico");
+            return Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Assets\\TrayIcon.ico");
         }
 
         private void TrayIconOpenClicked(object sender, System.EventArgs e)
