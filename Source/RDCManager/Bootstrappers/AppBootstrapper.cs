@@ -36,6 +36,8 @@ namespace RDCManager.Bootstrappers
             App.Current.MainWindow.ResizeMode = ResizeMode.CanMinimize;
             App.Current.MainWindow.MinWidth = 300;
             App.Current.MainWindow.Icon = new BitmapImage(new Uri("pack://application:,,,/RDCManager;component/Assets/WindowIcon.png"));
+            App.Current.MainWindow.WindowState = WindowState.Minimized;
+            App.Current.MainWindow.Hide();
         }
 
         private void CreateTrayIcon()
