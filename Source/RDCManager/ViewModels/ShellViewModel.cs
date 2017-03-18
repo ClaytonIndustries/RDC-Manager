@@ -22,10 +22,5 @@ namespace RDCManager.ViewModels
         {
             RDCListVM.Activate();
         }
-
-        protected override void OnDeactivate(bool close)
-        {
-            RDCListVM.Deactivate(true);
-        }
     }
 }

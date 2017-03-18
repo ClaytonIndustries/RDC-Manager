@@ -59,17 +59,6 @@ namespace RDCManager.ViewModels
             }
         }
 
-        protected override void OnDeactivate(bool close)
-        {
-            try
-            {
-                _fileAccess.Write(GetSaveLocation(), RDCConnections);
-            }
-            catch
-            {
-            }
-        }
-
         private string GetSaveLocation()
         {
             return System.AppDomain.CurrentDomain.BaseDirectory + "RDCConnections.xml";
@@ -96,6 +85,8 @@ namespace RDCManager.ViewModels
                 {
                     SelectedRDCConnection = RDCConnections.First();
                 }
+
+                SaveChanges();
             }
         }
 
@@ -117,11 +108,24 @@ namespace RDCManager.ViewModels
             {
                 SelectedRDCConnection = RDCConnections.First();
             }
+
+            SaveChanges();
         }
 
         private void ListRDCConnectionsAlphabetically()
         {
             RDCConnections = new ObservableCollection<RDCConnection>(RDCConnections.OrderBy(x => x.DisplayName));
+        }
+
+        private void SaveChanges()
+        {
+            try
+            {
+                _fileAccess.Write(GetSaveLocation(), RDCConnections);
+            }
+            catch
+            {
+            }
         }
     }
 }
