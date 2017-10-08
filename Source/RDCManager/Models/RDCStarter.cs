@@ -4,9 +4,16 @@ namespace RDCManager.Models
 {
     public class RDCStarter : IRDCStarter
     {
-        public void StartRDCSession(string machineName)
+        public Process StartRDCSession(string machineName)
         {
-            Process.Start("mstsc", string.Format("/v {0}", machineName));
+            ProcessStartInfo info = new ProcessStartInfo()
+            {
+                FileName = "mstsc.exe",
+                WindowStyle = ProcessWindowStyle.Maximized,
+                Arguments = string.Format("/v {0}", machineName)
+            };
+
+            return Process.Start(info);
         }
     }
 }

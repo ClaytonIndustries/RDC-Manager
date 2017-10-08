@@ -1,7 +1,9 @@
-﻿namespace RDCManager.Models
+﻿using System.Diagnostics;
+
+namespace RDCManager.Models
 {
     public interface IRDCStarter
     {
-        void StartRDCSession(string machineName);
+        Process StartRDCSession(string machineName);
     }
 }

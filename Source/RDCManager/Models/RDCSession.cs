@@ -71,21 +71,13 @@ namespace RDCManager.Models
         private Process _dockedProcess;
         private IntPtr _hWndDockedWindow;
 
-        public void CreateSession(IRDCStarter rDCStarter, Grid container)
+        public void CreateSession(IRDCStarter rdcStarter, Grid container)
         {
             if (!IsRunning)
             {
                 IsRunning = true;
 
-                //_rdcStarter.StartRDCSession(MachineName);
-
-                ProcessStartInfo info = new ProcessStartInfo()
-                {
-                    FileName = "notepad.exe",
-                    WindowStyle = ProcessWindowStyle.Maximized
-                };
-
-                _dockedProcess = Process.Start(info);
+                _dockedProcess = rdcStarter.StartRDCSession(MachineName);
 
                 while (_hWndDockedWindow == IntPtr.Zero)
                 {
