@@ -104,18 +104,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Messages\NewRDCConnectionMessage.cs" />
     <Compile Include="Models\IFileAccess.cs" />
     <Compile Include="Models\IRDCStarter.cs" />
-    <Compile Include="Models\RDCConnection.cs" />
+    <Compile Include="Models\RDCSession.cs" />
+    <Compile Include="Models\RDCModel.cs" />
     <Compile Include="Models\RDCStarter.cs" />
     <Compile Include="Models\XmlFileAccess.cs" />
-    <Compile Include="ViewModels\NewRDCConnectionViewModel.cs" />
     <Compile Include="ViewModels\RDCListViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="Views\NewRDCConnectionView.xaml.cs">
-      <DependentUpon>NewRDCConnectionView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\RDCListView.xaml.cs">
       <DependentUpon>RDCListView.xaml</DependentUpon>
     </Compile>
@@ -159,10 +155,6 @@
     <Resource Include="Assets\WindowIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\NewRDCConnectionView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\RDCListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +178,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="TrayIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\PlayIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\StopIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\AddIcon.png" />
+    <Resource Include="Assets\DeleteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Saveicon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

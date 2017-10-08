@@ -1,36 +1,35 @@
-﻿using System.Collections.ObjectModel;
-using System.Dynamic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
+using System.Timers;
+using System.Windows.Controls;
 using Caliburn.Micro;
-using RDCManager.Messages;
 using RDCManager.Models;
 
 namespace RDCManager.ViewModels
 {
-    public class RDCListViewModel : Screen, IHandle<NewRDCConnectionMessage>
+    public class RDCListViewModel : Screen
     {
-        private ObservableCollection<RDCConnection> _rdcCConnections;
-
-        public ObservableCollection<RDCConnection> RDCConnections
+        private ObservableCollection<RDCSession> _rdcs;
+        public ObservableCollection<RDCSession> RDCs
         {
-            get { return _rdcCConnections; }
-            private set { _rdcCConnections = value; NotifyOfPropertyChange(() => RDCConnections); }
+            get { return _rdcs; }
+            private set { _rdcs = value; NotifyOfPropertyChange(() => RDCs); }
         }
 
-        private RDCConnection _selectedRDCConnection;
-
-        public RDCConnection SelectedRDCConnection
+        private RDCSession _selectedRDC;
+        public RDCSession SelectedRDC
         {
-            get { return _selectedRDCConnection; }
-            set { _selectedRDCConnection = value; NotifyOfPropertyChange(() => SelectedRDCConnection); }
+            get { return _selectedRDC; }
+            set { _selectedRDC = value; SelectedRDCChanged(); NotifyOfPropertyChange(() => SelectedRDC); }
         }
+
+        private Grid _rdcFrame;
 
         private readonly IEventAggregator _events;
-
         private readonly IRDCStarter _rdcStarter;
-
         private readonly IFileAccess _fileAccess;
+        private readonly Timer _timer;
 
         public RDCListViewModel(IEventAggregator events, IRDCStarter rdcStarter, IFileAccess fileAccess)
         {
@@ -38,90 +37,145 @@ namespace RDCManager.ViewModels
             _events.Subscribe(this);
 
             _rdcStarter = rdcStarter;
-
             _fileAccess = fileAccess;
+
+            _timer = new Timer(5000);
+            _timer.AutoReset = true;
+            _timer.Elapsed += delegate
+            {
+                if (RDCs != null)
+                {
+                    foreach (RDCSession rdc in RDCs)
+                    {
+                        rdc.CheckForDeadProcess();
+                    }
+                }
+            };
+            _timer.Start();
         }
 
         protected override void OnActivate()
         {
+            LoadRDCs();
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            SaveRDCs();
+        }
+
+        public void RDCFrameLoaded(Grid grid)
+        {
+            _rdcFrame = grid;
+
+            _rdcFrame.SizeChanged += delegate
+            {
+                foreach(RDCSession rdc in _rdcs)
+                {
+                    rdc.CalculateSessionSize(_rdcFrame);
+                }
+            };
+        }
+
+        public void NewRDC()
+        {
+            RDCs.Add(new RDCSession());
+        }
+
+        public void DeleteRDC()
+        {
+            if (SelectedRDC != null)
+            {
+                RDCs.Remove(SelectedRDC);
+
+                if (RDCs.Count > 0)
+                {
+                    SelectedRDC = RDCs.First();
+                }
+
+                SaveRDCs();
+            }
+        }
+
+        public void SaveRDC()
+        {
+            SaveRDCs();
+        }
+
+        public void StartRDC()
+        {
+            if (SelectedRDC != null && !SelectedRDC.IsRunning)
+            {
+                SelectedRDC.CreateSession(_rdcStarter, _rdcFrame);
+            }
+        }
+
+        public void StopRDC()
+        {
+            if (SelectedRDC != null && SelectedRDC.IsRunning)
+            {
+                SelectedRDC.EndSession();
+            }
+        }
+
+        private void SelectedRDCChanged()
+        {
+            if (_selectedRDC != null)
+            {
+                _selectedRDC.ShowSession();
+
+                foreach (RDCSession rdc in _rdcs)
+                {
+                    if (rdc != _selectedRDC)
+                    {
+                        rdc.HideSession();
+                    }
+                }
+            }
+        }
+
+        private void LoadRDCs()
+        {
             try
             {
-                RDCConnections = _fileAccess.Read<ObservableCollection<RDCConnection>>(GetSaveLocation());
+                string saveLocation = System.AppDomain.CurrentDomain.BaseDirectory + "RDCConnections.xml";
 
-                if (RDCConnections.Count > 0)
+                RDCs = new ObservableCollection<RDCSession>(_fileAccess.Read<List<RDCModel>>(saveLocation)
+                                                                .Select(x => new RDCSession()
+                                                                {
+                                                                    DisplayName = x.DisplayName,
+                                                                    MachineName = x.MachineName,
+                                                                    Username = x.Username,
+                                                                    Password = x.Password
+                                                                })
+                                                    );
+
+                if (RDCs.Count > 0)
                 {
-                    SelectedRDCConnection = RDCConnections.First();
+                    SelectedRDC = RDCs.First();
                 }
             }
             catch
             {
-                RDCConnections = new ObservableCollection<RDCConnection>();
+                RDCs = new ObservableCollection<RDCSession>();
             }
         }
 
-        private string GetSaveLocation()
-        {
-            return System.AppDomain.CurrentDomain.BaseDirectory + "RDCConnections.xml";
-        }
-
-        public void New()
-        {
-            dynamic settings = new ExpandoObject();
-            settings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            settings.ResizeMode = ResizeMode.NoResize;
-            settings.MinWidth = 250;
-            settings.Title = "New RDC Connection";
-
-            new WindowManager().ShowDialog(new NewRDCConnectionViewModel(_events), null, settings);
-        }
-
-        public void Delete()
-        {
-            if (SelectedRDCConnection != null)
-            {
-                RDCConnections.Remove(SelectedRDCConnection);
-
-                if (RDCConnections.Count > 0)
-                {
-                    SelectedRDCConnection = RDCConnections.First();
-                }
-
-                SaveChanges();
-            }
-        }
-
-        public void Start()
-        {
-            if (SelectedRDCConnection != null)
-            {
-                _rdcStarter.StartRDCSession(SelectedRDCConnection.MachineName);
-            }
-        }
-
-        public void Handle(NewRDCConnectionMessage message)
-        {
-            RDCConnections.Add(new RDCConnection(message.DisplayName, message.MachineName));
-
-            ListRDCConnectionsAlphabetically();
-
-            if (RDCConnections.Count == 1)
-            {
-                SelectedRDCConnection = RDCConnections.First();
-            }
-
-            SaveChanges();
-        }
-
-        private void ListRDCConnectionsAlphabetically()
-        {
-            RDCConnections = new ObservableCollection<RDCConnection>(RDCConnections.OrderBy(x => x.DisplayName));
-        }
-
-        private void SaveChanges()
+        private void SaveRDCs()
         {
             try
             {
-                _fileAccess.Write(GetSaveLocation(), RDCConnections);
+                string saveLocation = System.AppDomain.CurrentDomain.BaseDirectory + "RDCConnections.xml";
+
+                List<RDCModel> rdcs = RDCs.Select(x => new RDCModel()
+                                                    {
+                                                        DisplayName = x.DisplayName,
+                                                        MachineName = x.MachineName,
+                                                        Username = x.Username,
+                                                        Password = x.Password
+                                                    }).ToList();
+
+                _fileAccess.Write(saveLocation, rdcs);
             }
             catch
             {

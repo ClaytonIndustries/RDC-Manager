@@ -3,32 +3,98 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RDCManager.Views"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d">
-    <StackPanel>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+    <DockPanel>
+        <Grid DockPanel.Dock="Left">
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-            <Button x:Name="New" Grid.Column="0" Content="Add" />
-            <Button x:Name="Delete" Grid.Column="1" Content="Delete" />
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Button Width="40" Height="40" cal:Message.Attach="[Event Click] = [Action NewRDC()]">
+                    <Image Source="/RDCManager;component/Assets/AddIcon.png" />
+                </Button>
+                <Button Width="40" Height="40" cal:Message.Attach="[Event Click] = [Action StopRDC()]">
+                    <Image Source="/RDCManager;component/Assets/StopIcon.png" />
+                </Button>
+            </StackPanel>
+            <ListView Grid.Row="1" ItemsSource="{Binding RDCs}" SelectedItem="{Binding SelectedRDC}" MinWidth="160" MaxWidth="160">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Padding" Value="2" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsRunning}" Value="true">
+                                            <Setter Property="Background" Value="Green"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsRunning}" Value="false">
+                                            <Setter Property="Background" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Margin="5">
+                                <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
+                                <TextBlock Text="{Binding MachineName}" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
-        <ComboBox ItemsSource="{Binding RDCConnections}" SelectedItem="{Binding SelectedRDCConnection}" Height="30" HorizontalContentAlignment="Center">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding DisplayName}" FontSize="16" />
-                        <TextBlock Text=" - " FontSize="16" />
-                        <TextBlock Text="{Binding MachineName}" FontSize="16" />
+        <Grid x:Name="RDCFrame" DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" cal:Message.Attach="[Event Loaded] = [Action RDCFrameLoaded($source)]">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <TextBlock Text="Display Name" FontSize="16" Margin="0,0,0,5" />
+                        <TextBox Text="{Binding SelectedRDC.DisplayName, Mode=TwoWay}" Height="25" Width="250" FontSize="16" />
                     </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Button x:Name="Start" Grid.Row="1" Grid.ColumnSpan="2" Content="Start" Height="30" />
-    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="2">
+                        <TextBlock Text="Machine Name" FontSize="16" Margin="0,0,0,5" />
+                        <TextBox Text="{Binding SelectedRDC.MachineName, Mode=TwoWay}" Height="25" Width="250" FontSize="16" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,10,0,0">
+                        <TextBlock Text="Username" FontSize="16" Margin="0,0,0,5" />
+                        <TextBox Text="{Binding SelectedRDC.Username, Mode=TwoWay}" Height="25" Width="250" FontSize="16" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,10,0,0">
+                        <TextBlock Text="Password" FontSize="16" Margin="0,0,0,5" />
+                        <TextBox Text="{Binding SelectedRDC.Password, Mode=TwoWay}" Height="25" Width="250" FontSize="16" />
+                    </StackPanel>
+                </Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Button Width="50" Height="50" cal:Message.Attach="[Event Click] = [Action DeleteRDC()]">
+                        <Image Source="/RDCManager;component/Assets/DeleteIcon.png" />
+                    </Button>
+                    <Button Width="50" Height="50" Margin="10,0,0,0" cal:Message.Attach="[Event Click] = [Action SaveRDC()]">
+                        <Image Source="/RDCManager;component/Assets/SaveIcon.png" />
+                    </Button>
+                    <Button Width="50" Height="50" Margin="10,0,0,0" cal:Message.Attach="[Event Click] = [Action StartRDC()]">
+                        <Image Source="/RDCManager;component/Assets/PlayIcon.png" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
 </UserControl>

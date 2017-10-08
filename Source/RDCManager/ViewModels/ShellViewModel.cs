@@ -1,5 +1,4 @@
 ﻿using Caliburn.Micro;
-using RDCManager.Models;
 
 namespace RDCManager.ViewModels
 {
@@ -11,16 +10,21 @@ namespace RDCManager.ViewModels
             private set;
         }
 
-        public ShellViewModel()
+        public ShellViewModel(RDCListViewModel rdcListVM)
         {
             DisplayName = "RDC Manager";
 
-            RDCListVM = new RDCListViewModel(new EventAggregator(), new RDCStarter(), new XmlFileAccess());
+            RDCListVM = rdcListVM;
         }
 
         protected override void OnActivate()
         {
             RDCListVM.Activate();
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            RDCListVM.Deactivate(close);
         }
     }
 }

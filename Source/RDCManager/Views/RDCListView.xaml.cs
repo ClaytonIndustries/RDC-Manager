@@ -3,7 +3,7 @@
 namespace RDCManager.Views
 {
     /// <summary>
-    /// Interaction logic for RDEListView.xaml
+    /// Interaction logic for RDCListView.xaml
     /// </summary>
     public partial class RDCListView : UserControl
     {
