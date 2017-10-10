@@ -53,7 +53,6 @@ namespace RDCManager.Bootstrappers
         protected override void Configure()
         {
             _container.PerRequest<IFileAccess, XmlFileAccess>();
-            _container.PerRequest<IRDCStarter, RDCStarter>();
             _container.PerRequest<IWindowManager, WindowManager>();
 
             _container.RegisterInstance(typeof(IEventAggregator), null, new EventAggregator());

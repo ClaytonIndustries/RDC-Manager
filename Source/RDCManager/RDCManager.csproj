@@ -91,9 +91,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -104,11 +106,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\RDCWindow.xaml.cs">
+      <DependentUpon>RDCWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RDCWinForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RDCWinForm.Designer.cs">
+      <DependentUpon>RDCWinForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\IFileAccess.cs" />
-    <Compile Include="Models\IRDCStarter.cs" />
-    <Compile Include="Models\RDCSession.cs" />
+    <Compile Include="Models\RDC.cs" />
     <Compile Include="Models\RDCModel.cs" />
-    <Compile Include="Models\RDCStarter.cs" />
     <Compile Include="Models\XmlFileAccess.cs" />
     <Compile Include="ViewModels\RDCListViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -134,6 +143,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Controls\RDCWinForm.resx">
+      <DependentUpon>RDCWinForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -155,6 +167,10 @@
     <Resource Include="Assets\WindowIcon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\RDCWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RDCListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,6 +207,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Saveicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxMSTSCLib">
+      <Guid>{8C11EFA1-92C3-11D1-BC1E-00C04FA31489}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="MSTSCLib">
+      <Guid>{8C11EFA1-92C3-11D1-BC1E-00C04FA31489}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

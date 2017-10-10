@@ -27,7 +27,45 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            <!--<ItemsControl ItemsSource="{Binding RDCs}" Margin="20">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5" Width="150">
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsRunning}" Value="true">
+                                            <Setter Property="Background" Value="Green"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsRunning}" Value="false">
+                                            <Setter Property="Background" Value="#ff3333"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Margin="5">
+                                <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
+                                <TextBlock Text="{Binding MachineName}" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>-->
             <ListView Grid.Row="1" ItemsSource="{Binding RDCs}" SelectedItem="{Binding SelectedRDC}" MinWidth="160" MaxWidth="160">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" MaxWidth="160"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -62,7 +100,8 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Grid x:Name="RDCFrame" DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" cal:Message.Attach="[Event Loaded] = [Action RDCFrameLoaded($source)]">
+        <ContentControl Content="{Binding SelectedRDC.Session}" />
+        <!--<Grid x:Name="RDCFrame" DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -103,6 +142,6 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
-        </Grid>
+        </Grid>-->
     </DockPanel>
 </UserControl>
