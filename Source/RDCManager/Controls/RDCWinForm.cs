@@ -12,15 +12,38 @@ namespace RDCManager.Controls
         {
             InitializeComponent();
 
-            axMsTscAxNotSafeForScripting.OnDisconnected += (s,e) => RaiseDisconnectedEvent();
+            axMsTscAxNotSafeForScripting.OnConnecting += (s, e) =>
+            {
+            };
+
+            axMsTscAxNotSafeForScripting.OnConnected += (s, e) =>
+            {
+            };
+
+            axMsTscAxNotSafeForScripting.OnAuthenticationWarningDisplayed += (s, e) =>
+            {
+            };
+
+            axMsTscAxNotSafeForScripting.OnDisconnected += (s, e) =>
+            {
+                RaiseDisconnectedEvent();
+            };
         }
 
         public void Connect(string machineName, string username, string password)
-        {
+         {
             if (axMsTscAxNotSafeForScripting.Connected == 0)
             {
+               
                 axMsTscAxNotSafeForScripting.Server = machineName;
                 axMsTscAxNotSafeForScripting.UserName = username;
+                axMsTscAxNotSafeForScripting.Domain = "MicrosoftAccount";
+
+                ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).EncryptionEnabled = 1;
+                ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).AuthenticationLevel = 2;
+                ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).EnableCredSspSupport = true;
+                //((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).SmartSizing = true;
+                ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).BitmapPersistence = 1;
 
                 axMsTscAxNotSafeForScripting.DesktopWidth = Screen.PrimaryScreen.Bounds.Width;
                 axMsTscAxNotSafeForScripting.DesktopHeight = Screen.PrimaryScreen.Bounds.Height;
