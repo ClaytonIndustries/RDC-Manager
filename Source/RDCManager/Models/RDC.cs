@@ -66,8 +66,8 @@ namespace RDCManager.Models
         public void Connect()
         {
             // Validate arguments / add try catch / return success or failure
-            //Session.Connect(MachineName, Username, Password);
-            Session.Connect("104.40.157.151", "mcl32", "Bubble16Bubble16!");
+            Session.Connect(MachineName, Username, Password);
+            //Session.Connect("104.40.157.151", "mcl32", "Bubble16Bubble16!");
         }
 
         public void Disconnect()

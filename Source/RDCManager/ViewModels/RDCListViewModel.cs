@@ -20,7 +20,19 @@ namespace RDCManager.ViewModels
         public RDC SelectedRDC
         {
             get { return _selectedRDC; }
-            set { _selectedRDC = value; SelectedRDChanged(); NotifyOfPropertyChange(() => SelectedRDC); }
+            set { _selectedRDC = value; NotifyOfPropertyChange(() => SelectedRDC); }
+        }
+
+        private bool _dialogOpen;
+        public bool DialogOpen
+        {
+            get { return _dialogOpen; }
+            set { _dialogOpen = value; NotifyOfPropertyChange(() => DialogOpen); }
+        }
+
+        public bool RDCSelectedAndNotRunning
+        {
+            get { return SelectedRDC != null && !SelectedRDC.IsRunning; }
         }
 
         private readonly IEventAggregator _events;
@@ -74,6 +86,7 @@ namespace RDCManager.ViewModels
             if (SelectedRDC != null && !SelectedRDC.IsRunning)
             {
                 SelectedRDC.IsRunning = true;
+                SelectedRDC.Connect();
             }
         }
 
@@ -85,9 +98,14 @@ namespace RDCManager.ViewModels
             }
         }
 
-        private void SelectedRDChanged()
+        public void OpenRDCList()
         {
-            SelectedRDC.Connect();
+            DialogOpen = true;
+        }
+
+        public void CloseRDCList()
+        {
+            DialogOpen = false;
         }
 
         private void LoadRDCs()

@@ -3,106 +3,77 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:conv="clr-namespace:RDCManager.Converters"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <conv:BooleanToVisiblityConverter x:Key="BooleanToVisiblityConverter" />
+    </UserControl.Resources>
     <DockPanel>
-        <ToolBarTray DockPanel.Dock="Top">
-            <ToolBar>
-                <Button x:Name="NewRDC">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/RDCManager;component/Assets/AddIcon.png" Width="20" Height="20" />
-                        <TextBlock Text="New" VerticalAlignment="Center" />
-                    </StackPanel>
+        <Grid DockPanel.Dock="Left" Background="#0747a6">
+            <StackPanel>
+                <Button x:Name="OpenRDCList" Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
+                    <materialDesign:PackIcon Kind="Play" Width="32" Height="32" Foreground="White" />
                 </Button>
-                <Button x:Name="StopRDC">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/RDCManager;component/Assets/StopIcon.png" Width="20" Height="20" />
-                        <TextBlock Text="Stop" VerticalAlignment="Center" />
-                    </StackPanel>
+                <Button x:Name="StopRDC" Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
+                    <materialDesign:PackIcon Kind="Stop" Width="32" Height="32" Foreground="White" />
                 </Button>
-            </ToolBar>
-        </ToolBarTray>
-        <Grid DockPanel.Dock="Left">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <!--<ItemsControl ItemsSource="{Binding RDCs}" Margin="20">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="5" Width="150">
-                            <Grid.Style>
-                                <Style TargetType="{x:Type Grid}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsRunning}" Value="true">
-                                            <Setter Property="Background" Value="Green"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding IsRunning}" Value="false">
-                                            <Setter Property="Background" Value="#ff3333"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0" Margin="5">
-                                <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding MachineName}" />
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>-->
-            <ListView Grid.Row="1" ItemsSource="{Binding RDCs}" SelectedItem="{Binding SelectedRDC}" MinWidth="160" MaxWidth="160">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" MaxWidth="160"></WrapPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Padding" Value="2" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.Style>
-                                <Style TargetType="{x:Type Grid}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsRunning}" Value="true">
-                                            <Setter Property="Background" Value="Green"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding IsRunning}" Value="false">
-                                            <Setter Property="Background" Value="#ff3333"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0" Margin="5">
-                                <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding MachineName}" />
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                <Button Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
+                    <materialDesign:PackIcon Kind="Settings" Width="32" Height="32" Foreground="White" />
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
+                    <materialDesign:PackIcon Kind="Account" Width="32" Height="32" Foreground="White" />
+                </Button>
+            </StackPanel>
         </Grid>
-        <ContentControl Content="{Binding SelectedRDC.Session}" />
-        <!--<Grid x:Name="RDCFrame" DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid>
+            <ContentControl Content="{Binding SelectedRDC.Session}" Visibility="{Binding SelectedRDC.IsRunning, Converter={StaticResource BooleanToVisiblityConverter}}" />
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding DialogOpen, Converter={StaticResource BooleanToVisiblityConverter}}">
+                <ListView ItemsSource="{Binding RDCs}" SelectedItem="{Binding SelectedRDC}" MinWidth="160" MaxWidth="160">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" MaxWidth="160"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Padding" Value="2" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsRunning}" Value="true">
+                                                <Setter Property="Background" Value="Green"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsRunning}" Value="false">
+                                                <Setter Property="Background" Value="#ff3333"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Margin="5">
+                                    <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding MachineName}" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="CloseRDCList" Content="OK" />
+                    <Button Content="CANCEL" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding RDCSelectedAndNotRunning, Converter={StaticResource BooleanToVisiblityConverter}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -114,34 +85,30 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Row="0" Grid.Column="0">
-                        <TextBlock Text="Display Name" FontSize="18" Margin="0,0,0,5" />
-                        <TextBox Text="{Binding SelectedRDC.DisplayName, Mode=TwoWay}" Height="30" Width="250" FontSize="18" />
+                        <TextBox Text="{Binding SelectedRDC.DisplayName, Mode=TwoWay}" Height="30" Width="250" materialDesign:HintAssist.Hint="Display Name" />
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="2">
-                        <TextBlock Text="Machine Name" FontSize="18" Margin="0,0,0,5" />
-                        <TextBox Text="{Binding SelectedRDC.MachineName, Mode=TwoWay}" Height="30" Width="250" FontSize="18" />
+                        <TextBox Text="{Binding SelectedRDC.MachineName, Mode=TwoWay}" Height="30" Width="250" materialDesign:HintAssist.Hint="Machine Name" />
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,10,0,0">
-                        <TextBlock Text="Username" FontSize="18" Margin="0,0,0,5" />
-                        <TextBox Text="{Binding SelectedRDC.Username, Mode=TwoWay}" Height="30" Width="250" FontSize="18" />
+                        <TextBox Text="{Binding SelectedRDC.Username, Mode=TwoWay}" Height="30" Width="250" materialDesign:HintAssist.Hint="Username" />
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,10,0,0">
-                        <TextBlock Text="Password" FontSize="18" Margin="0,0,0,5" />
-                        <TextBox Text="{Binding SelectedRDC.Password, Mode=TwoWay}" Height="30" Width="250" FontSize="18" />
+                        <TextBox Text="{Binding SelectedRDC.Password, Mode=TwoWay}" Height="30" Width="250" materialDesign:HintAssist.Hint="Password" />
                     </StackPanel>
                 </Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button x:Name="DeleteRDC" Width="50" Height="50" Background="#0078d7">
-                        <Image Source="/RDCManager;component/Assets/DeleteIcon.png" />
+                    <Button x:Name="DeleteRDC" Width="50" Height="50" Background="#0747a6" Padding="0">
+                        <materialDesign:PackIcon Kind="Delete"  Width="32" Height="32" />
                     </Button>
-                    <Button x:Name="SaveRDC" Width="50" Height="50" Margin="10,0,0,0" Background="#0078d7">
-                        <Image Source="/RDCManager;component/Assets/SaveIcon.png" />
+                    <Button x:Name="SaveRDC" Width="50" Height="50" Margin="10,0,0,0" Background="#0747a6" Padding="0">
+                        <materialDesign:PackIcon Kind="ContentSave"  Width="32" Height="32" />
                     </Button>
-                    <Button x:Name="StartRDC" Width="50" Height="50" Margin="10,0,0,0" Background="Green">
-                        <Image Source="/RDCManager;component/Assets/PlayIcon.png" />
+                    <Button x:Name="StartRDC" Width="50" Height="50" Margin="10,0,0,0" Background="Green" Padding="0">
+                        <materialDesign:PackIcon Kind="Play" Width="32" Height="32" />
                     </Button>
                 </StackPanel>
             </StackPanel>
-        </Grid>-->
+        </Grid>
     </DockPanel>
 </UserControl>
