@@ -3,9 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:ctrl="clr-namespace:RDCManager.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" >
     <DockPanel>
-        <ContentControl x:Name="RDCListVM" />
+        <Grid DockPanel.Dock="Left" Background="#0747a6">
+            <StackPanel>
+                <Button x:Name="ShowRDCList" Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
+                    <materialDesign:PackIcon Kind="Group" Width="32" Height="32" Foreground="White" />
+                </Button>
+                <Button x:Name="StopCurrentRDC" Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
+                    <materialDesign:PackIcon Kind="Stop" Width="32" Height="32" Foreground="White" />
+                </Button>
+                <Button x:Name="ShowSettings" Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
+                    <materialDesign:PackIcon Kind="Settings" Width="32" Height="32" Foreground="White" />
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
+                    <materialDesign:PackIcon Kind="Account" Width="32" Height="32" Foreground="White" />
+                </Button>
+            </StackPanel>
+        </Grid>
+        <ContentControl x:Name="ActiveItem" />
     </DockPanel>
 </UserControl>

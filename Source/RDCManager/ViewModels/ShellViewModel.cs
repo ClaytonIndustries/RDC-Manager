@@ -1,30 +1,66 @@
 ﻿using Caliburn.Micro;
+using RDCManager.Messages;
+using RDCManager.Models;
 
 namespace RDCManager.ViewModels
 {
-    public class ShellViewModel : Screen
+    public class ShellViewModel : Conductor<IScreen>.Collection.OneActive, IHandle<RDCSelectedMessage>
     {
-        public IScreen RDCListVM
+        public IScreen RDCSessionVM
         {
             get;
             private set;
         }
 
-        public ShellViewModel(RDCListViewModel rdcListVM)
+        public IScreen RDCCollectionVM
+        {
+            get;
+            private set;
+        }
+
+        public IScreen RDCSettingsVM
+        {
+            get;
+            private set;
+        }
+
+        public ShellViewModel(IEventAggregator events, RDCSessionViewModel rdcSessionVM, RDCCollectionViewModel rdcCollectionVM, RDCSettingsViewModel rdcSettingsVM)
         {
             DisplayName = "RDC Manager";
 
-            RDCListVM = rdcListVM;
+            events.Subscribe(this);
+
+            RDCSessionVM = rdcSessionVM;
+            RDCCollectionVM = rdcCollectionVM;
+            RDCSettingsVM = rdcSettingsVM;
         }
 
-        protected override void OnActivate()
+        public void ShowRDCList()
         {
-            RDCListVM.Activate();
+            if (!(ActiveItem is RDCCollectionViewModel))
+            {
+                ChangeActiveItem(RDCCollectionVM, false);
+            }
         }
 
-        protected override void OnDeactivate(bool close)
+        public void StopCurrentRDC()
         {
-            RDCListVM.Deactivate(close);
+        }
+
+        public void ShowSettings()
+        {
+            if (!(ActiveItem is RDCSettingsViewModel))
+            {
+                ChangeActiveItem(RDCSettingsVM, false);
+            }
+        }
+
+        public void Handle(RDCSelectedMessage message)
+        {
+            if (!(ActiveItem is RDCSessionViewModel))
+            {
+                ChangeActiveItem(RDCSessionVM, false);
+            }
         }
     }
 }

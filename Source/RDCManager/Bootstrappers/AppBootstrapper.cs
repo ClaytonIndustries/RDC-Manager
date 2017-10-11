@@ -56,9 +56,12 @@ namespace RDCManager.Bootstrappers
             _container.PerRequest<IWindowManager, WindowManager>();
 
             _container.RegisterInstance(typeof(IEventAggregator), null, new EventAggregator());
+            _container.RegisterInstance(typeof(IRDCInstanceManager), null, new RDCInstanceManager(_container.GetInstance<IFileAccess>()));
 
             _container.RegisterSingleton(typeof(ShellViewModel), null, typeof(ShellViewModel));
-            _container.RegisterSingleton(typeof(RDCListViewModel), null, typeof(RDCListViewModel));
+            _container.RegisterSingleton(typeof(RDCSessionViewModel), null, typeof(RDCSessionViewModel));
+            _container.RegisterSingleton(typeof(RDCCollectionViewModel), null, typeof(RDCCollectionViewModel));
+            _container.RegisterSingleton(typeof(RDCSettingsViewModel), null, typeof(RDCSettingsViewModel));
         }
 
         private void ConfigureMainWindow()

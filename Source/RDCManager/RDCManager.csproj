@@ -122,14 +122,25 @@
       <DependentUpon>RDCWinForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Converters\BooleanToVisiblityConverter.cs" />
+    <Compile Include="Messages\RDCSelectedMessage.cs" />
     <Compile Include="Models\IFileAccess.cs" />
+    <Compile Include="Models\IRDCInstanceManager.cs" />
     <Compile Include="Models\RDC.cs" />
+    <Compile Include="Models\RDCInstanceManager.cs" />
     <Compile Include="Models\RDCModel.cs" />
     <Compile Include="Models\XmlFileAccess.cs" />
-    <Compile Include="ViewModels\RDCListViewModel.cs" />
+    <Compile Include="ViewModels\RDCCollectionViewModel.cs" />
+    <Compile Include="ViewModels\RDCSessionViewModel.cs" />
+    <Compile Include="ViewModels\RDCSettingsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="Views\RDCListView.xaml.cs">
-      <DependentUpon>RDCListView.xaml</DependentUpon>
+    <Compile Include="Views\RDCCollectionView.xaml.cs">
+      <DependentUpon>RDCCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RDCSessionView.xaml.cs">
+      <DependentUpon>RDCSessionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RDCSettingsView.xaml.cs">
+      <DependentUpon>RDCSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
@@ -178,7 +189,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RDCListView.xaml">
+    <Page Include="Views\RDCCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RDCSessionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RDCSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
