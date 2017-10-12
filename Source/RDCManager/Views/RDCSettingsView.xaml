@@ -3,8 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
-    <Grid>
-            
-    </Grid>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border BorderBrush="LightGray" BorderThickness="1">
+            <ListView ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" MinWidth="750" MaxWidth="750" MinHeight="400">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" MaxWidth="750"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Padding" Value="2" />
+                        <Setter Property="Width" Value="250" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="#0747a6">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Account" Width="40" Height="40" VerticalAlignment="Center" Foreground="White" Margin="10" VerticalContentAlignment="Center" />
+                                <StackPanel Margin="10" Width="150">
+                                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" />
+                                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Username" />
+                                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+        <StackPanel HorizontalAlignment="Right" Margin="0,30,0,0">
+            <Button x:Name="NewAccount" Width="50" Height="50" Background="#0747a6" Padding="0">
+                <materialDesign:PackIcon Kind="NewBox" Width="32" Height="32" />
+            </Button>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

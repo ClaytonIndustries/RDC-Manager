@@ -129,6 +129,7 @@
     <Compile Include="Models\RDC.cs" />
     <Compile Include="Models\RDCInstanceManager.cs" />
     <Compile Include="Models\RDCModel.cs" />
+    <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\XmlFileAccess.cs" />
     <Compile Include="ViewModels\RDCCollectionViewModel.cs" />
     <Compile Include="ViewModels\RDCSessionViewModel.cs" />
