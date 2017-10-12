@@ -32,11 +32,6 @@ namespace RDCManager.ViewModels
             RDCs = new ObservableCollection<RDC>(rdcInstanceManager.GetRDCs());
         }
 
-        public void Close()
-        {
-            _events.PublishOnUIThread(new RDCSelectedMessage() { SelectedRDC = null });
-        }
-
         private void SelectedRDCChanged()
         {
             _events.PublishOnUIThread(new RDCSelectedMessage() { SelectedRDC = SelectedRDC });

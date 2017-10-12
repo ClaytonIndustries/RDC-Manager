@@ -4,7 +4,7 @@ using RDCManager.Models;
 
 namespace RDCManager.ViewModels
 {
-    public class RDCSessionViewModel : Screen, IHandle<RDCSelectedMessage>
+    public class RDCSessionViewModel : Screen, IHandle<RDCSelectedMessage>, IHandle<StopRDCMessage>
     {
         private RDC _selectedRDC;
         public RDC SelectedRDC
@@ -57,6 +57,11 @@ namespace RDCManager.ViewModels
             {
                 SelectedRDC = message.SelectedRDC;
             }
+        }
+
+        public void Handle(StopRDCMessage message)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

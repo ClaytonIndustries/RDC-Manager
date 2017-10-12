@@ -48,10 +48,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-            <Button x:Name="Close" Width="40" Height="40" Padding="0">
-                <materialDesign:PackIcon Kind="Close" Width="32" Height="32" />
-            </Button>
-        </StackPanel>
     </StackPanel>
 </UserControl>

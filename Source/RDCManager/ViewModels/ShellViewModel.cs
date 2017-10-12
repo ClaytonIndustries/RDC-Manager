@@ -24,15 +24,20 @@ namespace RDCManager.ViewModels
             private set;
         }
 
+        private readonly IEventAggregator _events;
+
         public ShellViewModel(IEventAggregator events, RDCSessionViewModel rdcSessionVM, RDCCollectionViewModel rdcCollectionVM, RDCSettingsViewModel rdcSettingsVM)
         {
             DisplayName = "RDC Manager";
 
-            events.Subscribe(this);
+            _events = events;
+            _events.Subscribe(this);
 
             RDCSessionVM = rdcSessionVM;
             RDCCollectionVM = rdcCollectionVM;
             RDCSettingsVM = rdcSettingsVM;
+
+            ShowRDCList();
         }
 
         public void ShowRDCList()
@@ -43,8 +48,17 @@ namespace RDCManager.ViewModels
             }
         }
 
+        public void ShowRDCSession()
+        {
+            if (!(ActiveItem is RDCSessionViewModel))
+            {
+                ChangeActiveItem(RDCSessionVM, false);
+            }
+        }
+
         public void StopCurrentRDC()
         {
+            _events.PublishOnUIThread(new StopRDCMessage());
         }
 
         public void ShowSettings()
@@ -57,10 +71,7 @@ namespace RDCManager.ViewModels
 
         public void Handle(RDCSelectedMessage message)
         {
-            if (!(ActiveItem is RDCSessionViewModel))
-            {
-                ChangeActiveItem(RDCSessionVM, false);
-            }
+            ShowRDCSession();
         }
     }
 }
