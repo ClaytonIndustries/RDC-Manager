@@ -6,5 +6,6 @@ namespace RDCManager.Models
     {
         IEnumerable<RDC> GetRDCs();
         void Save();
+        RDC CreateNew();
     }
 }

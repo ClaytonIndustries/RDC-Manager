@@ -18,7 +18,7 @@ namespace RDCManager.ViewModels
         public RDC SelectedRDC
         {
             get { return _selectedRDC; }
-            set { _selectedRDC = value; SelectedRDCChanged(); NotifyOfPropertyChange(() => SelectedRDC); }
+            set { _selectedRDC = value; NotifyOfPropertyChange(() => SelectedRDC); }
         }
 
         private readonly IEventAggregator _events;
@@ -32,9 +32,14 @@ namespace RDCManager.ViewModels
             RDCs = new ObservableCollection<RDC>(rdcInstanceManager.GetRDCs());
         }
 
-        private void SelectedRDCChanged()
+        public void RDCSelected()
         {
             _events.PublishOnUIThread(new RDCSelectedMessage() { SelectedRDC = SelectedRDC });
+        }
+
+        public void NewRDC()
+        {
+            RDCs.Add(_rdcInstanceManager.CreateNew());
         }
     }
 }

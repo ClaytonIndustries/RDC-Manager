@@ -19,7 +19,7 @@ namespace RDCManager.Converters
             {
             }
 
-            return false;
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

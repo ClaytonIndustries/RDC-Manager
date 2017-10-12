@@ -26,18 +26,18 @@ namespace RDCManager.Controls
 
             axMsTscAxNotSafeForScripting.OnDisconnected += (s, e) =>
             {
-                RaiseDisconnectedEvent();
+                Disconnected?.Invoke(this, EventArgs.Empty);
             };
         }
 
         public void Connect(string machineName, string username, string password)
          {
             if (axMsTscAxNotSafeForScripting.Connected == 0)
-            {
-               
+            {    
                 axMsTscAxNotSafeForScripting.Server = machineName;
                 axMsTscAxNotSafeForScripting.UserName = username;
                 axMsTscAxNotSafeForScripting.Domain = "MicrosoftAccount";
+                axMsTscAxNotSafeForScripting.ConnectingText = $"Connecting to {machineName}";
 
                 ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).EncryptionEnabled = 1;
                 ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).AuthenticationLevel = 2;
@@ -61,11 +61,6 @@ namespace RDCManager.Controls
             {
                 axMsTscAxNotSafeForScripting.Disconnect();
             }
-        }
-
-        private void RaiseDisconnectedEvent()
-        {
-            Disconnected?.Invoke(this, EventArgs.Empty);
         }
     }
 }

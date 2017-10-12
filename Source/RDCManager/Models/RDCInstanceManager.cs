@@ -8,7 +8,7 @@ namespace RDCManager.Models
     {
         private readonly IFileAccess _fileAccess;
 
-        private IEnumerable<RDC> _rdcs;
+        private ICollection<RDC> _rdcs;
 
         public RDCInstanceManager(IFileAccess fileAccess)
         {
@@ -20,6 +20,19 @@ namespace RDCManager.Models
         public IEnumerable<RDC> GetRDCs()
         {
             return _rdcs;
+        }
+
+        public RDC CreateNew()
+        {
+            RDC rdc = new RDC()
+            {
+                DisplayName = "New RDC",
+                MachineName = "new.rdc"
+            };
+
+            _rdcs.Add(rdc);
+
+            return rdc;
         }
 
         public void Save()

@@ -10,7 +10,23 @@ namespace RDCManager.ViewModels
         public RDC SelectedRDC
         {
             get { return _selectedRDC; }
-            set { _selectedRDC = value; NotifyOfPropertyChange(() => SelectedRDC); }
+            set
+            {
+                _selectedRDC = value;
+                NotifyOfPropertyChange(() => SelectedRDC);
+                NotifyOfPropertyChange(() => NoSelectedRDC);
+                NotifyOfPropertyChange(() => StoppedRDC);
+            }
+        }
+
+        public bool NoSelectedRDC
+        {
+            get { return SelectedRDC == null; }
+        }
+
+        public bool StoppedRDC
+        {
+            get { return SelectedRDC != null && !SelectedRDC.IsRunning; }
         }
 
         private readonly IEventAggregator _events;
@@ -29,16 +45,6 @@ namespace RDCManager.ViewModels
             if (SelectedRDC != null && !SelectedRDC.IsRunning)
             {
                 SelectedRDC.Connect();
-                // Only set to true if connect succeeds
-                SelectedRDC.IsRunning = true;
-            }
-        }
-
-        public void Stop()
-        {
-            if (SelectedRDC != null && SelectedRDC.IsRunning)
-            {
-                SelectedRDC.IsRunning = false;
             }
         }
 
@@ -61,7 +67,10 @@ namespace RDCManager.ViewModels
 
         public void Handle(StopRDCMessage message)
         {
-            throw new System.NotImplementedException();
+            if (SelectedRDC != null && SelectedRDC.IsRunning)
+            {
+                SelectedRDC.Disconnect();
+            }
         }
     }
 }

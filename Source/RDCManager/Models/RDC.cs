@@ -39,13 +39,6 @@ namespace RDCManager.Models
             set { _isRunning = value; NotifyOfPropertyChange(() => IsRunning); }
         }
 
-        private bool _isVisible;
-        public bool IsVisible
-        {
-            get { return _isVisible; }
-            set { _isVisible = value; NotifyOfPropertyChange(() => IsRunning); }
-        }
-
         private RDCWindow _session;
         public RDCWindow Session
         {
@@ -65,14 +58,20 @@ namespace RDCManager.Models
 
         public void Connect()
         {
-            // Validate arguments / add try catch / return success or failure
-            Session.Connect(MachineName, Username, Password);
-            //Session.Connect("104.40.157.151", "mcl32", "Bubble16Bubble16!");
+            try
+            {
+                IsRunning = true;
+
+                Session.Connect(MachineName, Username, Password);
+            }
+            catch
+            {
+                IsRunning = false;
+            }
         }
 
         public void Disconnect()
         {
-            // Add try catch
             Session.Disconnect();
         }
     }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -22,7 +23,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid cal:Message.Attach="[Event PreviewMouseUp] = [Action RDCSelected()]">
                             <Grid.Style>
                                 <Style TargetType="{x:Type Grid}">
                                     <Style.Triggers>
@@ -35,18 +36,22 @@
                                     </Style.Triggers>
                                 </Style>
                             </Grid.Style>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0" Margin="5">
-                                <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding MachineName}" />
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Monitor" Width="40" Height="40" VerticalAlignment="Center" Foreground="White" Margin="10" />
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding MachineName}" />
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
+        <StackPanel HorizontalAlignment="Right" Margin="0,30,0,0">
+            <Button x:Name="NewRDC" Width="50" Height="50" Background="#0747a6" Padding="0">
+                <materialDesign:PackIcon Kind="NewBox" Width="32" Height="32" />
+            </Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>
