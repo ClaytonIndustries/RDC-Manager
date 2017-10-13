@@ -126,10 +126,12 @@
     <Compile Include="Messages\StopRDCMessage.cs" />
     <Compile Include="Models\IFileAccess.cs" />
     <Compile Include="Models\IRDCInstanceManager.cs" />
+    <Compile Include="Models\IUserAccountManager.cs" />
     <Compile Include="Models\RDC.cs" />
     <Compile Include="Models\RDCInstanceManager.cs" />
     <Compile Include="Models\RDCModel.cs" />
     <Compile Include="Models\UserAccount.cs" />
+    <Compile Include="Models\UserAccountManager.cs" />
     <Compile Include="Models\XmlFileAccess.cs" />
     <Compile Include="ViewModels\RDCCollectionViewModel.cs" />
     <Compile Include="ViewModels\RDCSessionViewModel.cs" />

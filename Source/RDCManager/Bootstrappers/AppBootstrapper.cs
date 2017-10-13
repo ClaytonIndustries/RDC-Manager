@@ -57,6 +57,7 @@ namespace RDCManager.Bootstrappers
 
             _container.RegisterInstance(typeof(IEventAggregator), null, new EventAggregator());
             _container.RegisterInstance(typeof(IRDCInstanceManager), null, new RDCInstanceManager(_container.GetInstance<IFileAccess>()));
+            _container.RegisterInstance(typeof(IUserAccountManager), null, new UserAccountManager(_container.GetInstance<IFileAccess>()));
 
             _container.RegisterSingleton(typeof(ShellViewModel), null, typeof(ShellViewModel));
             _container.RegisterSingleton(typeof(RDCSessionViewModel), null, typeof(RDCSessionViewModel));

@@ -62,15 +62,15 @@ namespace RDCManager.Models
             {
                 string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCConnections.xml";
 
-                _rdcs = new List<RDC>(_fileAccess.Read<List<RDCModel>>(saveLocation)
-                                                  .Select(x => new RDC()
-                                                  {
-                                                      DisplayName = x.DisplayName,
-                                                      MachineName = x.MachineName,
-                                                      Username = x.Username,
-                                                      Password = x.Password
-                                                  })
-                                     );
+                _rdcs = _fileAccess.Read<List<RDCModel>>(saveLocation)
+                                   .Select(x => new RDC()
+                                   {
+                                       DisplayName = x.DisplayName,
+                                       MachineName = x.MachineName,
+                                       Username = x.Username,
+                                       Password = x.Password
+                                   })
+                                   .ToList();
             }
             catch
             {
