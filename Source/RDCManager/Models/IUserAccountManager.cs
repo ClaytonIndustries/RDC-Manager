@@ -5,7 +5,7 @@ namespace RDCManager.Models
     public interface IUserAccountManager
     {
         IEnumerable<UserAccount> GetUserAccounts();
-        void Save();
+        bool Save();
         UserAccount CreateNew();
         void Delete(UserAccount userAccount);
     }

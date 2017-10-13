@@ -35,16 +35,19 @@ namespace RDCManager.Models
             _userAccounts.Remove(userAccount);
         }
 
-        public void Save()
+        public bool Save()
         {
             try
             {
                 string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCAccounts.xml";
 
                 _fileAccess.Write(saveLocation, _userAccounts);
+
+                return true;
             }
             catch
             {
+                return false;
             }
         }
 

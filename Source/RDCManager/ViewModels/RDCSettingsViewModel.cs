@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Caliburn.Micro;
+using MaterialDesignThemes.Wpf;
 using RDCManager.Models;
 
 namespace RDCManager.ViewModels
@@ -20,10 +21,12 @@ namespace RDCManager.ViewModels
             set { _selectedAccount = value; NotifyOfPropertyChange(() => SelectedAccount); }
         }
 
+        private readonly ISnackbarMessageQueue _snackbarMessageQueue;
         private readonly IUserAccountManager _userAccountManager;
 
-        public RDCSettingsViewModel(IUserAccountManager userAccountManager)
+        public RDCSettingsViewModel(ISnackbarMessageQueue snackbarMessageQueue, IUserAccountManager userAccountManager)
         {
+            _snackbarMessageQueue = snackbarMessageQueue;
             _userAccountManager = userAccountManager;
 
             Accounts = new ObservableCollection<UserAccount>(_userAccountManager.GetUserAccounts());
@@ -36,7 +39,9 @@ namespace RDCManager.ViewModels
 
         public void Save()
         {
-            _userAccountManager.Save();
+            string saveMessage = _userAccountManager.Save() ? "Changes saved" : "Failed to save";
+
+            _snackbarMessageQueue.Enqueue(saveMessage);
         }
 
         public void Delete()
@@ -47,6 +52,8 @@ namespace RDCManager.ViewModels
                 _userAccountManager.Save();
 
                 Accounts.Remove(SelectedAccount);
+
+                _snackbarMessageQueue.Enqueue("User Account deleted");
             }
         }
     }

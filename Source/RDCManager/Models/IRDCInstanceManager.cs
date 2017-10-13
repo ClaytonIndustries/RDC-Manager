@@ -5,7 +5,7 @@ namespace RDCManager.Models
     public interface IRDCInstanceManager
     {
         IEnumerable<RDC> GetRDCs();
-        void Save();
+        bool Save();
         RDC CreateNew();
         void Delete(RDC rdc);
     }

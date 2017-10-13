@@ -1,6 +1,6 @@
 ﻿using Caliburn.Micro;
+using MaterialDesignThemes.Wpf;
 using RDCManager.Messages;
-using RDCManager.Models;
 
 namespace RDCManager.ViewModels
 {
@@ -24,14 +24,22 @@ namespace RDCManager.ViewModels
             private set;
         }
 
+        public ISnackbarMessageQueue SnackbarMessageQueue
+        {
+            get; set;
+        }
+
         private readonly IEventAggregator _events;
 
-        public ShellViewModel(IEventAggregator events, RDCSessionViewModel rdcSessionVM, RDCCollectionViewModel rdcCollectionVM, RDCSettingsViewModel rdcSettingsVM)
+        public ShellViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, RDCSessionViewModel rdcSessionVM, RDCCollectionViewModel rdcCollectionVM, 
+            RDCSettingsViewModel rdcSettingsVM)
         {
             DisplayName = "RDC Manager";
 
             _events = events;
             _events.Subscribe(this);
+
+            SnackbarMessageQueue = snackbarMessageQueue;
 
             RDCSessionVM = rdcSessionVM;
             RDCCollectionVM = rdcCollectionVM;

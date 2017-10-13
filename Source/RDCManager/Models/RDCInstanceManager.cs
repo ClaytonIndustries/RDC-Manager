@@ -40,7 +40,7 @@ namespace RDCManager.Models
             _rdcs.Remove(rdc);
         }
 
-        public void Save()
+        public bool Save()
         {
             try
             {
@@ -55,9 +55,12 @@ namespace RDCManager.Models
                 }).ToList();
 
                 _fileAccess.Write(saveLocation, rdcs);
+
+                return true;
             }
             catch
             {
+                return false;
             }
         }
 

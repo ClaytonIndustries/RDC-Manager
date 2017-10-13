@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using Caliburn.Micro;
+using MaterialDesignThemes.Wpf;
 using RDCManager.Models;
 using RDCManager.ViewModels;
 
@@ -58,6 +58,7 @@ namespace RDCManager.Bootstrappers
             _container.RegisterInstance(typeof(IEventAggregator), null, new EventAggregator());
             _container.RegisterInstance(typeof(IRDCInstanceManager), null, new RDCInstanceManager(_container.GetInstance<IFileAccess>()));
             _container.RegisterInstance(typeof(IUserAccountManager), null, new UserAccountManager(_container.GetInstance<IFileAccess>()));
+            _container.RegisterInstance(typeof(ISnackbarMessageQueue), null, new SnackbarMessageQueue());
 
             _container.RegisterSingleton(typeof(ShellViewModel), null, typeof(ShellViewModel));
             _container.RegisterSingleton(typeof(RDCSessionViewModel), null, typeof(RDCSessionViewModel));
@@ -93,7 +94,7 @@ namespace RDCManager.Bootstrappers
         {
             notifyIcon = new NotifyIcon();
 
-            notifyIcon.Icon = new Icon(GetTrayIconPath());
+            notifyIcon.Icon = new System.Drawing.Icon(GetTrayIconPath());
             notifyIcon.Visible = true;
             notifyIcon.Text = "RDC Manager";
 

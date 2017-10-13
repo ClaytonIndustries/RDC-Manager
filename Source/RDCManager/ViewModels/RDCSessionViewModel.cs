@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using RDCManager.Messages;
 using RDCManager.Models;
+using MaterialDesignThemes.Wpf;
 
 namespace RDCManager.ViewModels
 {
@@ -30,13 +31,15 @@ namespace RDCManager.ViewModels
         }
 
         private readonly IEventAggregator _events;
+        private readonly ISnackbarMessageQueue _snackbarMessageQueue;
         private readonly IRDCInstanceManager _rdcInstanceManager;
 
-        public RDCSessionViewModel(IEventAggregator events, IRDCInstanceManager rdcInstanceManager)
+        public RDCSessionViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, IRDCInstanceManager rdcInstanceManager)
         {
             _events = events;
             _events.Subscribe(this);
 
+            _snackbarMessageQueue = snackbarMessageQueue;
             _rdcInstanceManager = rdcInstanceManager;
         }
 
@@ -50,7 +53,9 @@ namespace RDCManager.ViewModels
 
         public void Save()
         {
-            _rdcInstanceManager.Save();
+            string saveMessage = _rdcInstanceManager.Save() ? "Changes saved" : "Failed to save";
+
+            _snackbarMessageQueue.Enqueue(saveMessage);
         }
 
         public void Delete()
@@ -61,6 +66,8 @@ namespace RDCManager.ViewModels
                 _rdcInstanceManager.Save();
 
                 SelectedRDC = null;
+
+                _snackbarMessageQueue.Enqueue("RDC deleted");
             }
         }
 
