@@ -80,18 +80,21 @@ namespace RDCManager.ViewModels
 
         protected override void OnActivate()
         {
-            UserAccounts = new ObservableCollection<UserAccount>(_userAccountManager.GetUserAccounts());
-            UserAccounts.Insert(0, new UserAccount() { Name = MANUAL_ENTRY_NAME });
-
-            UserAccount userAccount = UserAccounts.FirstOrDefault(x => x.Id == SelectedRDC.UserAccountId);
-
-            if(userAccount != null)
+            if (SelectedRDC != null)
             {
-                SelectedUserAccount = userAccount;
-            }
-            else
-            {
-                SelectedUserAccount = UserAccounts.First();
+                UserAccounts = new ObservableCollection<UserAccount>(_userAccountManager.GetUserAccounts());
+                UserAccounts.Insert(0, new UserAccount() { Name = MANUAL_ENTRY_NAME });
+
+                UserAccount userAccount = UserAccounts.FirstOrDefault(x => x.Id == SelectedRDC.UserAccountId);
+
+                if (userAccount != null)
+                {
+                    SelectedUserAccount = userAccount;
+                }
+                else
+                {
+                    SelectedUserAccount = UserAccounts.First();
+                }
             }
         }
 

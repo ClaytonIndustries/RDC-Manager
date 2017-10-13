@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ctrl="clr-namespace:RDCManager.Controls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -28,7 +29,7 @@
                                 <StackPanel Margin="10" Width="150">
                                     <TextBox Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Foreground="White" />
                                     <TextBox Text="{Binding Username, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Username" Foreground="White" />
-                                    <TextBox Text="{Binding Password, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" Foreground="White" />
+                                    <ctrl:BindablePasswordBox PasswordPlainText="{Binding Password, Mode=TwoWay}" Foreground="White" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

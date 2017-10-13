@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:conv="clr-namespace:RDCManager.Converters"
+             xmlns:ctrl="clr-namespace:RDCManager.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <UserControl.Resources>
         <conv:BooleanToVisiblityConverter x:Key="BooleanToVisiblityConverter" />
@@ -44,7 +45,7 @@
                         <TextBox Text="{Binding SelectedRDC.Username, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" materialDesign:HintAssist.Hint="Username" IsEnabled="{Binding ManualUserAccountEntryEnabled}" />
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,10,0,0">
-                        <TextBox Text="{Binding SelectedRDC.Password, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" materialDesign:HintAssist.Hint="Password" IsEnabled="{Binding ManualUserAccountEntryEnabled}" />
+                        <ctrl:BindablePasswordBox PasswordPlainText="{Binding SelectedRDC.Password, Mode=TwoWay}" Width="250" IsEnabled="{Binding ManualUserAccountEntryEnabled}" />
                     </StackPanel>
                 </Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">

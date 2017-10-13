@@ -112,6 +112,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RDCWindow.xaml.cs">
       <DependentUpon>RDCWindow.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
     <Resource Include="Assets\WindowIcon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RDCWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
