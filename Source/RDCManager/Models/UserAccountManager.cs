@@ -7,7 +7,7 @@ namespace RDCManager.Models
     {
         private readonly IFileAccess _fileAccess;
 
-        private ICollection<UserAccount> _userAccounts;
+        private List<UserAccount> _userAccounts;
 
         public UserAccountManager(IFileAccess fileAccess)
         {
@@ -28,6 +28,11 @@ namespace RDCManager.Models
             _userAccounts.Add(userAccount);
 
             return userAccount;
+        }
+
+        public void Delete(UserAccount userAccount)
+        {
+            _userAccounts.Remove(userAccount);
         }
 
         public void Save()

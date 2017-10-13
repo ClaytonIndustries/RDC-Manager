@@ -8,7 +8,7 @@ namespace RDCManager.Models
     {
         private readonly IFileAccess _fileAccess;
 
-        private ICollection<RDC> _rdcs;
+        private List<RDC> _rdcs;
 
         public RDCInstanceManager(IFileAccess fileAccess)
         {
@@ -33,6 +33,11 @@ namespace RDCManager.Models
             _rdcs.Add(rdc);
 
             return rdc;
+        }
+
+        public void Delete(RDC rdc)
+        {
+            _rdcs.Remove(rdc);
         }
 
         public void Save()

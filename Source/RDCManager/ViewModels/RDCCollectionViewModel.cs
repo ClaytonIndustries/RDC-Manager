@@ -28,8 +28,11 @@ namespace RDCManager.ViewModels
         {
             _events = events;
             _rdcInstanceManager = rdcInstanceManager;
+        }
 
-            RDCs = new ObservableCollection<RDC>(rdcInstanceManager.GetRDCs());
+        protected override void OnActivate()
+        {
+            RDCs = new ObservableCollection<RDC>(_rdcInstanceManager.GetRDCs());
         }
 
         public void RDCSelected()

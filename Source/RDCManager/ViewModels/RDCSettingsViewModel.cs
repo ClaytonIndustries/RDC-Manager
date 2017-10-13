@@ -20,14 +20,34 @@ namespace RDCManager.ViewModels
             set { _selectedAccount = value; NotifyOfPropertyChange(() => SelectedAccount); }
         }
 
-        public RDCSettingsViewModel()
+        private readonly IUserAccountManager _userAccountManager;
+
+        public RDCSettingsViewModel(IUserAccountManager userAccountManager)
         {
-            Accounts = new ObservableCollection<UserAccount>();
+            _userAccountManager = userAccountManager;
+
+            Accounts = new ObservableCollection<UserAccount>(_userAccountManager.GetUserAccounts());
         }
 
         public void NewAccount()
         {
-            Accounts.Add(new UserAccount());
+            Accounts.Add(_userAccountManager.CreateNew());
+        }
+
+        public void Save()
+        {
+            _userAccountManager.Save();
+        }
+
+        public void Delete()
+        {
+            if(SelectedAccount != null)
+            {
+                _userAccountManager.Delete(SelectedAccount);
+                _userAccountManager.Save();
+
+                Accounts.Remove(SelectedAccount);
+            }
         }
     }
 }

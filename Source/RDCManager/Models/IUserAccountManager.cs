@@ -7,5 +7,6 @@ namespace RDCManager.Models
         IEnumerable<UserAccount> GetUserAccounts();
         void Save();
         UserAccount CreateNew();
+        void Delete(UserAccount userAccount);
     }
 }

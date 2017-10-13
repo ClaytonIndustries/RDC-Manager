@@ -55,6 +55,13 @@ namespace RDCManager.ViewModels
 
         public void Delete()
         {
+            if (SelectedRDC != null)
+            {
+                _rdcInstanceManager.Delete(SelectedRDC);
+                _rdcInstanceManager.Save();
+
+                SelectedRDC = null;
+            }
         }
 
         public void Handle(RDCSelectedMessage message)
