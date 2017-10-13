@@ -1,7 +1,10 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using Caliburn.Micro;
+using MaterialDesignThemes.Wpf;
 using RDCManager.Messages;
 using RDCManager.Models;
-using MaterialDesignThemes.Wpf;
 
 namespace RDCManager.ViewModels
 {
@@ -20,6 +23,26 @@ namespace RDCManager.ViewModels
             }
         }
 
+        private ObservableCollection<UserAccount> _userAccounts;
+        public ObservableCollection<UserAccount> UserAccounts
+        {
+            get { return _userAccounts; }
+            set { _userAccounts = value; NotifyOfPropertyChange(() => UserAccounts); }
+        }
+
+        private UserAccount _selectedUserAccount;
+        public UserAccount SelectedUserAccount
+        {
+            get { return _selectedUserAccount; }
+            set
+            {
+                _selectedUserAccount = value;
+                SelectedUserAccountChanged();
+                NotifyOfPropertyChange(() => SelectedUserAccount);
+                NotifyOfPropertyChange(() => ManualUserAccountEntryEnabled);
+            }
+        }
+
         public bool NoSelectedRDC
         {
             get { return SelectedRDC == null; }
@@ -30,17 +53,46 @@ namespace RDCManager.ViewModels
             get { return SelectedRDC != null && !SelectedRDC.IsRunning; }
         }
 
+        public bool ManualUserAccountEntryEnabled
+        {
+            get
+            {
+                return SelectedUserAccount != null && SelectedUserAccount.Name == MANUAL_ENTRY_NAME;
+            }
+        }
+
         private readonly IEventAggregator _events;
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
         private readonly IRDCInstanceManager _rdcInstanceManager;
+        private readonly IUserAccountManager _userAccountManager;
 
-        public RDCSessionViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, IRDCInstanceManager rdcInstanceManager)
+        private const string MANUAL_ENTRY_NAME = "Manual Entry";
+
+        public RDCSessionViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, IRDCInstanceManager rdcInstanceManager, IUserAccountManager userAccountManager)
         {
             _events = events;
             _events.Subscribe(this);
 
             _snackbarMessageQueue = snackbarMessageQueue;
             _rdcInstanceManager = rdcInstanceManager;
+            _userAccountManager = userAccountManager;
+        }
+
+        protected override void OnActivate()
+        {
+            UserAccounts = new ObservableCollection<UserAccount>(_userAccountManager.GetUserAccounts());
+            UserAccounts.Insert(0, new UserAccount() { Name = MANUAL_ENTRY_NAME });
+
+            UserAccount userAccount = UserAccounts.FirstOrDefault(x => x.Id == SelectedRDC.UserAccountId);
+
+            if(userAccount != null)
+            {
+                SelectedUserAccount = userAccount;
+            }
+            else
+            {
+                SelectedUserAccount = UserAccounts.First();
+            }
         }
 
         public void Start()
@@ -84,6 +136,16 @@ namespace RDCManager.ViewModels
             if (SelectedRDC != null && SelectedRDC.IsRunning)
             {
                 SelectedRDC.Disconnect();
+            }
+        }
+
+        private void SelectedUserAccountChanged()
+        {
+            if (SelectedUserAccount != null)
+            {
+                SelectedRDC.UserAccountId = SelectedUserAccount.Name == MANUAL_ENTRY_NAME ? Guid.Empty : SelectedUserAccount.Id;
+                SelectedRDC.Username = SelectedUserAccount.Username;
+                SelectedRDC.Password = SelectedUserAccount.Password;
             }
         }
     }

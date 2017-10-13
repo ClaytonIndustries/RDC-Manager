@@ -23,7 +23,10 @@ namespace RDCManager.Models
 
         public UserAccount CreateNew()
         {
-            UserAccount userAccount = new UserAccount();
+            UserAccount userAccount = new UserAccount()
+            {
+                Id = Guid.NewGuid()
+            };
 
             _userAccounts.Add(userAccount);
 

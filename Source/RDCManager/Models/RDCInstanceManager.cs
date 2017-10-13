@@ -51,7 +51,8 @@ namespace RDCManager.Models
                     DisplayName = x.DisplayName,
                     MachineName = x.MachineName,
                     Username = x.Username,
-                    Password = x.Password
+                    Password = x.Password,
+                    UserAccountId = x.UserAccountId
                 }).ToList();
 
                 _fileAccess.Write(saveLocation, rdcs);
@@ -76,7 +77,8 @@ namespace RDCManager.Models
                                        DisplayName = x.DisplayName,
                                        MachineName = x.MachineName,
                                        Username = x.Username,
-                                       Password = x.Password
+                                       Password = x.Password,
+                                       UserAccountId = x.UserAccountId
                                    })
                                    .ToList();
             }

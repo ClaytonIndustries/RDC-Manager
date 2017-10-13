@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using Caliburn.Micro;
 using RDCManager.Controls;
 
 namespace RDCManager.Models
@@ -44,6 +45,11 @@ namespace RDCManager.Models
         {
             get { return _session; }
             set { _session = value; NotifyOfPropertyChange(() => Session); }
+        }
+
+        public Guid UserAccountId
+        {
+            get; set;
         }
 
         public RDC()

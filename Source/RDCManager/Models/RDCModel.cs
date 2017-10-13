@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace RDCManager.Models
 {
     public class RDCModel
@@ -7,5 +8,6 @@ namespace RDCManager.Models
         public string MachineName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public Guid UserAccountId { get; set; }
     }
 }
