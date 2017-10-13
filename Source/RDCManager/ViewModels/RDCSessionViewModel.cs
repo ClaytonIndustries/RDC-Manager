@@ -93,6 +93,13 @@ namespace RDCManager.ViewModels
                 }
                 else
                 {
+                    if (SelectedRDC.UserAccountId != Guid.Empty)
+                    {
+                        SelectedRDC.UserAccountId = Guid.Empty;
+                        SelectedRDC.Username = string.Empty;
+                        SelectedRDC.Password = string.Empty;
+                    }
+
                     SelectedUserAccount = UserAccounts.First();
                 }
             }

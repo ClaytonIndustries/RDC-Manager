@@ -10,27 +10,21 @@ namespace RDCManager.Controls
     {
         public event EventHandler Disconnected;
 
-        private readonly RDCWinForm _rdcControl;
-
         public RDCWindow()
         {
             InitializeComponent();
 
-            _rdcControl = new RDCWinForm();
-
-            _rdcControl.Disconnected += (s,e) => Disconnected?.Invoke(this, EventArgs.Empty);
-
-            RDCHost.Child = _rdcControl;
+            RDCWinForm.Disconnected += (s,e) => Disconnected?.Invoke(this, EventArgs.Empty);
         }
 
         public void Connect(string machineName, string username, string password)
         {
-            _rdcControl.Connect(machineName, username, password);
+            RDCWinForm.Connect(machineName, username, password);
         }
 
         public void Disconnect()
         {
-            _rdcControl.Disconnect();
+            RDCWinForm.Disconnect();
         }
 
 
