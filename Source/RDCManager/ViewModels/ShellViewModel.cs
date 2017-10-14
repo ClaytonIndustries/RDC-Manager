@@ -32,7 +32,7 @@ namespace RDCManager.ViewModels
         private readonly IEventAggregator _events;
 
         public ShellViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, RDCSessionViewModel rdcSessionVM, RDCCollectionViewModel rdcCollectionVM, 
-            RDCSettingsViewModel rdcSettingsVM)
+            RDCUserAccountsViewModel rdcSettingsVM)
         {
             DisplayName = "RDC Manager";
 
@@ -71,7 +71,7 @@ namespace RDCManager.ViewModels
 
         public void ShowSettings()
         {
-            if (!(ActiveItem is RDCSettingsViewModel))
+            if (!(ActiveItem is RDCUserAccountsViewModel))
             {
                 ChangeActiveItem(RDCSettingsVM, false);
             }

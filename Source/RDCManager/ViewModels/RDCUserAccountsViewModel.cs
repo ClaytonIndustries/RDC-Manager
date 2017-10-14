@@ -5,7 +5,7 @@ using RDCManager.Models;
 
 namespace RDCManager.ViewModels
 {
-    public class RDCSettingsViewModel : Screen
+    public class RDCUserAccountsViewModel : Screen
     {
         private ObservableCollection<UserAccount> _accounts;
         public ObservableCollection<UserAccount> Accounts
@@ -24,7 +24,7 @@ namespace RDCManager.ViewModels
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
         private readonly IUserAccountManager _userAccountManager;
 
-        public RDCSettingsViewModel(ISnackbarMessageQueue snackbarMessageQueue, IUserAccountManager userAccountManager)
+        public RDCUserAccountsViewModel(ISnackbarMessageQueue snackbarMessageQueue, IUserAccountManager userAccountManager)
         {
             _snackbarMessageQueue = snackbarMessageQueue;
             _userAccountManager = userAccountManager;

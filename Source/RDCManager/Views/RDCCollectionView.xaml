@@ -40,8 +40,8 @@
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Monitor" Width="40" Height="40" VerticalAlignment="Center" Foreground="White" Margin="10" />
                                 <StackPanel Margin="10">
-                                    <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
-                                    <TextBlock Text="{Binding MachineName}" />
+                                    <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" Foreground="White" />
+                                    <TextBlock Text="{Binding MachineName}" Foreground="White" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

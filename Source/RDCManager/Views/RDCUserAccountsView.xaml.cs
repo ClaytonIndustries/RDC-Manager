@@ -3,11 +3,11 @@
 namespace RDCManager.Views
 {
     /// <summary>
-    /// Interaction logic for RDCSettingsView.xaml
+    /// Interaction logic for RDCUserAccountsView.xaml
     /// </summary>
-    public partial class RDCSettingsView : UserControl
+    public partial class RDCUserAccountsView : UserControl
     {
-        public RDCSettingsView()
+        public RDCUserAccountsView()
         {
             InitializeComponent();
         }

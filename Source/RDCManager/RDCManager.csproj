@@ -138,7 +138,7 @@
     <Compile Include="Models\XmlFileAccess.cs" />
     <Compile Include="ViewModels\RDCCollectionViewModel.cs" />
     <Compile Include="ViewModels\RDCSessionViewModel.cs" />
-    <Compile Include="ViewModels\RDCSettingsViewModel.cs" />
+    <Compile Include="ViewModels\RDCUserAccountsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\RDCCollectionView.xaml.cs">
       <DependentUpon>RDCCollectionView.xaml</DependentUpon>
@@ -146,8 +146,8 @@
     <Compile Include="Views\RDCSessionView.xaml.cs">
       <DependentUpon>RDCSessionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RDCSettingsView.xaml.cs">
-      <DependentUpon>RDCSettingsView.xaml</DependentUpon>
+    <Compile Include="Views\RDCUserAccountsView.xaml.cs">
+      <DependentUpon>RDCUserAccountsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
@@ -208,7 +208,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RDCSettingsView.xaml">
+    <Page Include="Views\RDCUserAccountsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
