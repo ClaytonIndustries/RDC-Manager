@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Caliburn.Micro;
 using MaterialDesignThemes.Wpf;
+using RDCManager.Controls;
 using RDCManager.Messages;
 using RDCManager.Models;
 
@@ -120,16 +121,21 @@ namespace RDCManager.ViewModels
             _snackbarMessageQueue.Enqueue(saveMessage);
         }
 
-        public void Delete()
+        public async void Delete()
         {
             if (SelectedRDC != null)
             {
-                _rdcInstanceManager.Delete(SelectedRDC);
-                _rdcInstanceManager.Save();
+                object result = await DialogHost.Show(new Dialog());
 
-                SelectedRDC = null;
+                if ((bool)result)
+                {
+                    _rdcInstanceManager.Delete(SelectedRDC);
+                    _rdcInstanceManager.Save();
 
-                _snackbarMessageQueue.Enqueue("RDC deleted");
+                    SelectedRDC = null;
+
+                    _snackbarMessageQueue.Enqueue("RDC deleted");
+                }
             }
         }
 

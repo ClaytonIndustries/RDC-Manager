@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Caliburn.Micro;
 using MaterialDesignThemes.Wpf;
+using RDCManager.Controls;
 using RDCManager.Models;
 
 namespace RDCManager.ViewModels
@@ -44,16 +45,21 @@ namespace RDCManager.ViewModels
             _snackbarMessageQueue.Enqueue(saveMessage);
         }
 
-        public void Delete()
+        public async void Delete()
         {
             if (SelectedAccount != null)
             {
-                _userAccountManager.Delete(SelectedAccount);
-                _userAccountManager.Save();
+                object result = await DialogHost.Show(new Dialog());
 
-                Accounts.Remove(SelectedAccount);
+                if((bool)result)
+                {
+                    _userAccountManager.Delete(SelectedAccount);
+                    _userAccountManager.Save();
 
-                _snackbarMessageQueue.Enqueue("User Account deleted");
+                    Accounts.Remove(SelectedAccount);
+
+                    _snackbarMessageQueue.Enqueue("User Account deleted");
+                }
             }
         }
     }

@@ -26,5 +26,10 @@
             <ContentControl x:Name="ActiveItem" />
         </DockPanel>
         <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}" />
+        <materialDesign:DialogHost>
+            <materialDesign:DialogHost.DialogContent>
+                <ContentControl />
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
     </Grid>
 </UserControl>
