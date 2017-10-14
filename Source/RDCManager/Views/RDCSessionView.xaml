@@ -10,11 +10,12 @@
     <UserControl.Resources>
         <conv:BooleanToVisiblityConverter x:Key="BooleanToVisiblityConverter" />
     </UserControl.Resources>
-    <DockPanel>
-        <Grid>
-            <ContentControl Content="{Binding SelectedRDC.Session}" Visibility="{Binding SelectedRDC.IsRunning, Converter={StaticResource BooleanToVisiblityConverter}}" />
-            <TextBlock Text="Nothing to see here..." FontSize="20" Foreground="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding NoSelectedRDC, Converter={StaticResource BooleanToVisiblityConverter}}" />
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding StoppedRDC, Converter={StaticResource BooleanToVisiblityConverter}}">
+    <Grid>
+        <ContentControl Content="{Binding SelectedRDC.Session}" Visibility="{Binding SelectedRDC.IsRunning, Converter={StaticResource BooleanToVisiblityConverter}}" />
+        <TextBlock Text="Nothing to see here..." FontSize="20" Foreground="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding NoSelectedRDC, Converter={StaticResource BooleanToVisiblityConverter}}" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding StoppedRDC, Converter={StaticResource BooleanToVisiblityConverter}}">
+            <TextBlock Text="RDC Settings" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0,0,0,30" Foreground="LightGray" />
+            <StackPanel>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -60,6 +61,6 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
-        </Grid>
-    </DockPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>
