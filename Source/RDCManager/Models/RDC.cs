@@ -40,23 +40,18 @@ namespace RDCManager.Models
             set { _isRunning = value; NotifyOfPropertyChange(() => IsRunning); }
         }
 
-        private RDCWindow _session;
-        public RDCWindow Session
-        {
-            get { return _session; }
-            set { _session = value; NotifyOfPropertyChange(() => Session); }
-        }
-
         public Guid UserAccountId
         {
             get; set;
         }
 
+        private readonly IRDCWindow _session;
+
         public RDC()
         {
-            Session = new RDCWindow();
+            _session = new RDCWindow();
 
-            Session.Disconnected += delegate
+            _session.Disconnected += delegate
             {
                 IsRunning = false;
             };
@@ -68,7 +63,7 @@ namespace RDCManager.Models
             {
                 IsRunning = true;
 
-                Session.Connect(MachineName, Username, Password);
+                _session.Connect(MachineName, Username, Password);
             }
             catch
             {
@@ -78,7 +73,7 @@ namespace RDCManager.Models
 
         public void Disconnect()
         {
-            Session.Disconnect();
+            _session.Disconnect();
         }
     }
 }
