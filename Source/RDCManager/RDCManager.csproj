@@ -132,6 +132,7 @@
     <Compile Include="Messages\StopRDCMessage.cs" />
     <Compile Include="Models\IFileAccess.cs" />
     <Compile Include="Models\IRDCInstanceManager.cs" />
+    <Compile Include="Models\IRDCWindow.cs" />
     <Compile Include="Models\IUserAccountManager.cs" />
     <Compile Include="Models\RDC.cs" />
     <Compile Include="Models\RDCInstanceManager.cs" />
