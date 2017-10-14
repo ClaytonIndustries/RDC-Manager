@@ -59,8 +59,6 @@ namespace RDCManager.Models
             Session.Disconnected += delegate
             {
                 IsRunning = false;
-
-                Disconnected?.Invoke(this, EventArgs.Empty);
             };
         }
 
