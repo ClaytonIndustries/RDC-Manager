@@ -7,6 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="RDC Collection" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0,0,0,30" Foreground="LightGray" />
         <Border BorderBrush="LightGray" BorderThickness="1">
             <ListView ItemsSource="{Binding RDCs}" SelectedItem="{Binding SelectedRDC}" MinWidth="750" MaxWidth="750" MinHeight="400">
                 <ListView.ItemsPanel>

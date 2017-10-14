@@ -46,7 +46,7 @@ namespace RDCManager.ViewModels
 
         public void Delete()
         {
-            if(SelectedAccount != null)
+            if (SelectedAccount != null)
             {
                 _userAccountManager.Delete(SelectedAccount);
                 _userAccountManager.Save();
