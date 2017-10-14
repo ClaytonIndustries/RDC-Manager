@@ -240,19 +240,6 @@
     <Resource Include="TrayIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\PlayIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\StopIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\AddIcon.png" />
-    <Resource Include="Assets\DeleteIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Saveicon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="AxMSTSCLib">
       <Guid>{8C11EFA1-92C3-11D1-BC1E-00C04FA31489}</Guid>
       <VersionMajor>1</VersionMajor>
