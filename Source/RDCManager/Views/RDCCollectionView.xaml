@@ -9,10 +9,10 @@
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="RDC Collection" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0,0,0,30" Foreground="LightGray" />
         <Border BorderBrush="LightGray" BorderThickness="1">
-            <ListView ItemsSource="{Binding RDCs}" SelectedItem="{Binding SelectedRDC}" MinWidth="750" MaxWidth="750" MinHeight="400" MaxHeight="400">
+            <ListView ItemsSource="{Binding RDCs}" SelectedItem="{Binding SelectedRDC}" MinWidth="770" MaxWidth="770" MinHeight="400" MaxHeight="400">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" MaxWidth="750"></WrapPanel>
+                        <WrapPanel Orientation="Horizontal" MaxWidth="770"></WrapPanel>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemContainerStyle>
