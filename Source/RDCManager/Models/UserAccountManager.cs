@@ -42,7 +42,7 @@ namespace RDCManager.Models
         {
             try
             {
-                string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCAccounts.xml";
+                string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCAccounts.json";
 
                 _fileAccess.Write(saveLocation, _userAccounts);
 
@@ -58,7 +58,7 @@ namespace RDCManager.Models
         {
             try
             {
-                string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCAccounts.xml";
+                string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCAccounts.json";
 
                 _userAccounts = _fileAccess.Read<List<UserAccount>>(saveLocation);
             }

@@ -47,7 +47,7 @@ namespace RDCManager.Models
         {
             try
             {
-                string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCConnections.xml";
+                string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCs.json";
 
                 List<RDCModel> rdcs = _rdcs.Select(x => new RDCModel()
                 {
@@ -73,7 +73,7 @@ namespace RDCManager.Models
         {
             try
             {
-                string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCConnections.xml";
+                string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCs.json";
 
                 _rdcs = _fileAccess.Read<List<RDCModel>>(saveLocation)
                                    .Select(x => new RDC(_snackbarMessageQueue)

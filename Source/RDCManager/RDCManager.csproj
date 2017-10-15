@@ -81,6 +81,9 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.1.953, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -134,12 +137,12 @@
     <Compile Include="Models\IRDCInstanceManager.cs" />
     <Compile Include="Models\IRDCWindow.cs" />
     <Compile Include="Models\IUserAccountManager.cs" />
+    <Compile Include="Models\JsonFileAccess.cs" />
     <Compile Include="Models\RDC.cs" />
     <Compile Include="Models\RDCInstanceManager.cs" />
     <Compile Include="Models\RDCModel.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\UserAccountManager.cs" />
-    <Compile Include="Models\XmlFileAccess.cs" />
     <Compile Include="ViewModels\RDCCollectionViewModel.cs" />
     <Compile Include="ViewModels\RDCSessionViewModel.cs" />
     <Compile Include="ViewModels\RDCUserAccountsViewModel.cs" />
