@@ -1,5 +1,6 @@
 ﻿using System;
 using Caliburn.Micro;
+using MaterialDesignThemes.Wpf;
 using RDCManager.Controls;
 
 namespace RDCManager.Models
@@ -52,13 +53,15 @@ namespace RDCManager.Models
             get; set;
         }
 
-        public RDC()
+        public RDC(ISnackbarMessageQueue snackbarMessageQueue)
         {
             Session = new RDCWindow();
 
             Session.Disconnected += delegate
             {
                 IsRunning = false;
+
+                snackbarMessageQueue.Enqueue($"{DisplayName} disconnected");
             };
         }
 
