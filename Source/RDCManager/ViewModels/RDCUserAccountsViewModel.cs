@@ -58,7 +58,7 @@ namespace RDCManager.ViewModels
 
                     Accounts.Remove(SelectedAccount);
 
-                    _snackbarMessageQueue.Enqueue("User Account deleted");
+                    _snackbarMessageQueue.Enqueue("User Account deleted and changes saved");
                 }
             }
         }

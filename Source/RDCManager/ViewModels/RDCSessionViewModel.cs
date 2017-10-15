@@ -134,7 +134,7 @@ namespace RDCManager.ViewModels
 
                     SelectedRDC = null;
 
-                    _snackbarMessageQueue.Enqueue("RDC deleted");
+                    _snackbarMessageQueue.Enqueue("RDC deleted and changes saved");
                 }
             }
         }
