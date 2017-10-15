@@ -31,6 +31,7 @@
                                     <TextBox Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Foreground="White" />
                                     <TextBox Text="{Binding Username, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Username" Foreground="White" />
                                     <ctrl:BindablePasswordBox PasswordPlainText="{Binding Password, Mode=TwoWay}" Foreground="White" />
+                                    <TextBox Text="{Binding Domain, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Domain" Foreground="White" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

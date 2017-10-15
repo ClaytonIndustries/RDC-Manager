@@ -22,18 +22,11 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="30" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Row="0" Grid.Column="0">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBox Text="{Binding SelectedRDC.DisplayName, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" materialDesign:HintAssist.Hint="Display Name" />
+                        <TextBox Text="{Binding SelectedRDC.MachineName, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" materialDesign:HintAssist.Hint="Machine Name" Margin="30,0,0,0" />
                     </StackPanel>
-                    <StackPanel Grid.Row="0" Grid.Column="2">
-                        <TextBox Text="{Binding SelectedRDC.MachineName, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" materialDesign:HintAssist.Hint="Machine Name" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="250" Margin="0,40,0,10">
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Center" Width="250" Margin="0,40,0,10">
                         <ComboBox ItemsSource="{Binding UserAccounts}" SelectedItem="{Binding SelectedUserAccount}" materialDesign:HintAssist.Hint="User Account" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -42,11 +35,10 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,30,0,0">
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
                         <TextBox Text="{Binding SelectedRDC.Username, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" materialDesign:HintAssist.Hint="Username" IsEnabled="{Binding ManualUserAccountEntryEnabled}" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,30,0,0">
-                        <ctrl:BindablePasswordBox PasswordPlainText="{Binding SelectedRDC.Password, Mode=TwoWay}" Width="250" IsEnabled="{Binding ManualUserAccountEntryEnabled}" />
+                        <ctrl:BindablePasswordBox PasswordPlainText="{Binding SelectedRDC.Password, Mode=TwoWay}" Width="250" IsEnabled="{Binding ManualUserAccountEntryEnabled}" Margin="30,0,0,0" />
+                        <TextBox Text="{Binding SelectedRDC.Domain, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" materialDesign:HintAssist.Hint="Domain" IsEnabled="{Binding ManualUserAccountEntryEnabled}" Margin="30,0,0,0" />
                     </StackPanel>
                 </Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">

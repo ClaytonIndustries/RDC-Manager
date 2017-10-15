@@ -20,15 +20,15 @@ namespace RDCManager.Controls
             };
         }
 
-        public void Connect(string machineName, string username, string password)
-         {
+        public void Connect(string machineName, string username, string password, string domain)
+        {
             if (axMsTscAxNotSafeForScripting.Connected == 0)
             {
                 _disconnectRequested = false;
 
                 axMsTscAxNotSafeForScripting.Server = machineName;
                 axMsTscAxNotSafeForScripting.UserName = username;
-                axMsTscAxNotSafeForScripting.Domain = "MicrosoftAccount";
+                axMsTscAxNotSafeForScripting.Domain = domain;
                 axMsTscAxNotSafeForScripting.ConnectingText = $"Connecting to {machineName}";
 
                 ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).EncryptionEnabled = 1;

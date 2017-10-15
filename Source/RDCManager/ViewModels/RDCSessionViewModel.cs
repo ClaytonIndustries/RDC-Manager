@@ -99,6 +99,7 @@ namespace RDCManager.ViewModels
                         SelectedRDC.UserAccountId = Guid.Empty;
                         SelectedRDC.Username = string.Empty;
                         SelectedRDC.Password = string.Empty;
+                        SelectedRDC.Domain = string.Empty;
                     }
 
                     SelectedUserAccount = UserAccounts.First();
@@ -162,6 +163,7 @@ namespace RDCManager.ViewModels
                 SelectedRDC.UserAccountId = SelectedUserAccount.Name == MANUAL_ENTRY_NAME ? Guid.Empty : SelectedUserAccount.Id;
                 SelectedRDC.Username = SelectedUserAccount.Username;
                 SelectedRDC.Password = SelectedUserAccount.Password;
+                SelectedRDC.Domain = SelectedUserAccount.Domain;
             }
         }
     }

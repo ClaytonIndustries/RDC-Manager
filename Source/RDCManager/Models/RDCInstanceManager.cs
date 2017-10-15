@@ -55,6 +55,7 @@ namespace RDCManager.Models
                     MachineName = x.MachineName,
                     Username = x.Username,
                     Password = x.Password,
+                    Domain = x.Domain,
                     UserAccountId = x.UserAccountId
                 }).ToList();
 
@@ -81,6 +82,7 @@ namespace RDCManager.Models
                                        MachineName = x.MachineName,
                                        Username = x.Username,
                                        Password = x.Password,
+                                       Domain = x.Domain,
                                        UserAccountId = x.UserAccountId
                                    })
                                    .ToList();

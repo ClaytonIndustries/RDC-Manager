@@ -8,16 +8,12 @@ namespace RDCManager.Controls
     /// </summary>
     public partial class BindablePasswordBox : UserControl
     {
-        private bool _ignoreUpdate;
-
         public BindablePasswordBox()
         {
             InitializeComponent();
 
             PasswordBox.PasswordChanged += delegate
             {
-                _ignoreUpdate = true;
-
                 PasswordPlainText = PasswordBox.Password;
             };
         }
@@ -37,10 +33,8 @@ namespace RDCManager.Controls
         {
             var bindablePasswordBox = d as BindablePasswordBox;
 
-            if (bindablePasswordBox._ignoreUpdate)
+            if(bindablePasswordBox.PasswordBox.Password == bindablePasswordBox.PasswordPlainText)
             {
-                bindablePasswordBox._ignoreUpdate = false;
-
                 return;
             }
 

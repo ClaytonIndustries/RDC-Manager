@@ -34,6 +34,13 @@ namespace RDCManager.Models
             set { _password = value; NotifyOfPropertyChange(() => Password); }
         }
 
+        private string _domain;
+        public string Domain
+        {
+            get { return _domain; }
+            set { _domain = value; NotifyOfPropertyChange(() => Domain); }
+        }
+
         private bool _isRunning;
         public bool IsRunning
         {
@@ -71,7 +78,7 @@ namespace RDCManager.Models
             {
                 IsRunning = true;
 
-                Session.Connect(MachineName, Username, Password);
+                Session.Connect(MachineName, Username, Password, Domain);
             }
             catch
             {
