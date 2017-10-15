@@ -133,6 +133,8 @@
     <Compile Include="Converters\BooleanToVisiblityConverter.cs" />
     <Compile Include="Messages\RDCSelectedMessage.cs" />
     <Compile Include="Messages\StopRDCMessage.cs" />
+    <Compile Include="Models\EncryptionManager.cs" />
+    <Compile Include="Models\IEncryptionManager.cs" />
     <Compile Include="Models\IFileAccess.cs" />
     <Compile Include="Models\IRDCInstanceManager.cs" />
     <Compile Include="Models\IRDCWindow.cs" />

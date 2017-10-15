@@ -10,7 +10,7 @@ namespace RDCManager.Models
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
         private readonly IFileAccess _fileAccess;
 
-        private List<RDC> _rdcs;
+        private ICollection<RDC> _rdcs;
 
         public RDCInstanceManager(ISnackbarMessageQueue snackbarMessageQueue, IFileAccess fileAccess)
         {
@@ -49,7 +49,7 @@ namespace RDCManager.Models
             {
                 string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCs.json";
 
-                List<RDCModel> rdcs = _rdcs.Select(x => new RDCModel()
+                IEnumerable<RDCModel> rdcs = _rdcs.Select(x => new RDCModel()
                 {
                     DisplayName = x.DisplayName,
                     MachineName = x.MachineName,
@@ -57,7 +57,7 @@ namespace RDCManager.Models
                     Password = x.Password,
                     Domain = x.Domain,
                     UserAccountId = x.UserAccountId
-                }).ToList();
+                });
 
                 _fileAccess.Write(saveLocation, rdcs);
 
@@ -75,7 +75,7 @@ namespace RDCManager.Models
             {
                 string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCs.json";
 
-                _rdcs = _fileAccess.Read<List<RDCModel>>(saveLocation)
+                _rdcs = _fileAccess.Read<IEnumerable<RDCModel>>(saveLocation)
                                    .Select(x => new RDC(_snackbarMessageQueue)
                                    {
                                        DisplayName = x.DisplayName,

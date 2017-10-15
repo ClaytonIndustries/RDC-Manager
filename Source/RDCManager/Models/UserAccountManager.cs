@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RDCManager.Models
 {
     public class UserAccountManager : IUserAccountManager
     {
         private readonly IFileAccess _fileAccess;
+        private readonly IEncryptionManager _encryptionManager;
 
-        private List<UserAccount> _userAccounts;
+        private ICollection<UserAccount> _userAccounts;
 
-        public UserAccountManager(IFileAccess fileAccess)
+        public UserAccountManager(IFileAccess fileAccess, IEncryptionManager encryptionManager)
         {
             _fileAccess = fileAccess;
+            _encryptionManager = encryptionManager;
 
             Load();
         }
@@ -44,7 +47,16 @@ namespace RDCManager.Models
             {
                 string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCAccounts.json";
 
-                _fileAccess.Write(saveLocation, _userAccounts);
+                IEnumerable<UserAccount> encrypted = _userAccounts.Select(x => new UserAccount()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Username = x.Username,
+                    Password = _encryptionManager.AesEncrypt(x.Password),
+                    Domain = x.Domain
+                });
+
+                _fileAccess.Write(saveLocation, encrypted);
 
                 return true;
             }
@@ -60,7 +72,16 @@ namespace RDCManager.Models
             {
                 string saveLocation = AppDomain.CurrentDomain.BaseDirectory + "RDCAccounts.json";
 
-                _userAccounts = _fileAccess.Read<List<UserAccount>>(saveLocation);
+                IEnumerable<UserAccount> encrypted = _fileAccess.Read<IEnumerable<UserAccount>>(saveLocation);
+
+                _userAccounts = encrypted.Select(x => new UserAccount()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Username = x.Username,
+                    Password = _encryptionManager.AesDecrypt(x.Password),
+                    Domain = x.Domain
+                }).ToList();
             }
             catch
             {
