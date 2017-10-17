@@ -31,11 +31,11 @@ namespace RDCManager.Controls
                 axMsTscAxNotSafeForScripting.Domain = domain;
                 axMsTscAxNotSafeForScripting.ConnectingText = $"Connecting to {machineName}";
 
-                ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).EncryptionEnabled = 1;
-                ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).AuthenticationLevel = 2;
-                ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).EnableCredSspSupport = true;
-                ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).SmartSizing = true;
-                ((IMsRdpClientAdvancedSettings8)axMsTscAxNotSafeForScripting.AdvancedSettings).BitmapPersistence = 1;
+                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).EncryptionEnabled = 1;
+                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).AuthenticationLevel = 2;
+                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).EnableCredSspSupport = true;
+                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).SmartSizing = true;
+                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).BitmapPersistence = 1;
 
                 axMsTscAxNotSafeForScripting.DesktopWidth = Screen.PrimaryScreen.Bounds.Width - 50;
                 axMsTscAxNotSafeForScripting.DesktopHeight = Screen.PrimaryScreen.Bounds.Height - 63;
