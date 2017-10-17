@@ -74,8 +74,8 @@ namespace RDCManager.Bootstrappers
             App.Current.MainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             App.Current.MainWindow.ResizeMode = ResizeMode.CanResize;
             App.Current.MainWindow.WindowState = WindowState.Maximized;
-            App.Current.MainWindow.MinWidth = 700;
-            App.Current.MainWindow.MinHeight = 500;
+            App.Current.MainWindow.MinWidth = 845;
+            App.Current.MainWindow.MinHeight = 600;
             App.Current.MainWindow.Icon = new BitmapImage(new Uri("pack://application:,,,/RDCManager;component/Assets/WindowIcon.png"));
 
             string[] args = Environment.GetCommandLineArgs();
