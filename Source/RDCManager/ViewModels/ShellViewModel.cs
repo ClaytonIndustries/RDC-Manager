@@ -6,34 +6,15 @@ namespace RDCManager.ViewModels
 {
     public class ShellViewModel : Conductor<IScreen>.Collection.OneActive, IHandle<RDCSelectedMessage>
     {
-        public IScreen RDCSessionVM
-        {
-            get;
-            private set;
-        }
+        public IScreen RDCSessionVM { get; }
 
-        public IScreen RDCCollectionVM
-        {
-            get;
-            private set;
-        }
+        public IScreen RDCCollectionVM { get; }
 
-        public IScreen RDCUserAccountsVM
-        {
-            get;
-            private set;
-        }
+        public IScreen RDCUserAccountsVM { get; }
 
-        public IScreen RDCGroupsVM
-        {
-            get;
-            private set;
-        }
+        public IScreen RDCGroupsVM { get; }
 
-        public ISnackbarMessageQueue SnackbarMessageQueue
-        {
-            get; set;
-        }
+        public ISnackbarMessageQueue SnackbarMessageQueue { get; }
 
         private readonly IEventAggregator _events;
 
