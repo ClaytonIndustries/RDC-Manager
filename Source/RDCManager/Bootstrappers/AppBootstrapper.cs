@@ -65,6 +65,7 @@ namespace RDCManager.Bootstrappers
             _container.RegisterSingleton(typeof(RDCSessionViewModel), null, typeof(RDCSessionViewModel));
             _container.RegisterSingleton(typeof(RDCCollectionViewModel), null, typeof(RDCCollectionViewModel));
             _container.RegisterSingleton(typeof(RDCUserAccountsViewModel), null, typeof(RDCUserAccountsViewModel));
+            _container.RegisterSingleton(typeof(RDCGroupsViewModel), null, typeof(RDCGroupsViewModel));
         }
 
         private void ConfigureMainWindow()

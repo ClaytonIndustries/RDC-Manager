@@ -146,11 +146,15 @@
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\UserAccountManager.cs" />
     <Compile Include="ViewModels\RDCCollectionViewModel.cs" />
+    <Compile Include="ViewModels\RDCGroupsViewModel.cs" />
     <Compile Include="ViewModels\RDCSessionViewModel.cs" />
     <Compile Include="ViewModels\RDCUserAccountsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\RDCCollectionView.xaml.cs">
       <DependentUpon>RDCCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RDCGroupsView.xaml.cs">
+      <DependentUpon>RDCGroupsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RDCSessionView.xaml.cs">
       <DependentUpon>RDCSessionView.xaml</DependentUpon>
@@ -214,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RDCCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RDCGroupsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
