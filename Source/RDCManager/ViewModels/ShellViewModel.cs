@@ -18,7 +18,7 @@ namespace RDCManager.ViewModels
             private set;
         }
 
-        public IScreen UserAccountsVM
+        public IScreen RDCUserAccountsVM
         {
             get;
             private set;
@@ -38,7 +38,7 @@ namespace RDCManager.ViewModels
         private readonly IEventAggregator _events;
 
         public ShellViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, RDCSessionViewModel rdcSessionVM, RDCCollectionViewModel rdcCollectionVM, 
-            RDCUserAccountsViewModel userAccountsVM, RDCGroupsViewModel rdcGroupsVM)
+            RDCUserAccountsViewModel rdcUserAccountsVM, RDCGroupsViewModel rdcGroupsVM)
         {
             DisplayName = "RDC Manager";
 
@@ -49,7 +49,7 @@ namespace RDCManager.ViewModels
 
             RDCSessionVM = rdcSessionVM;
             RDCCollectionVM = rdcCollectionVM;
-            UserAccountsVM = userAccountsVM;
+            RDCUserAccountsVM = rdcUserAccountsVM;
             RDCGroupsVM = rdcGroupsVM;
 
             ShowRDCList();
@@ -80,7 +80,7 @@ namespace RDCManager.ViewModels
         {
             if (!(ActiveItem is RDCUserAccountsViewModel))
             {
-                ChangeActiveItem(UserAccountsVM, false);
+                ChangeActiveItem(RDCUserAccountsVM, false);
             }
         }
 

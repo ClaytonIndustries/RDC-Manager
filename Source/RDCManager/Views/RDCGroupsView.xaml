@@ -2,9 +2,49 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
-    <Grid>
-            
-    </Grid>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="RDC Groups" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0,0,0,30" Foreground="LightGray" />
+        <Border BorderBrush="LightGray" BorderThickness="1">
+            <ListView ItemsSource="{Binding RDCGroups}" SelectedItem="{Binding SelectedRDCGroup}" MinWidth="770" MaxWidth="770" MinHeight="400" MaxHeight="400">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" MaxWidth="770"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Padding" Value="2" />
+                        <Setter Property="Width" Value="250" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="#0747a6">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Group" Width="40" Height="40" VerticalAlignment="Center" Foreground="White" Margin="10" VerticalContentAlignment="Center" />
+                                <StackPanel Margin="10" Width="150">
+                                    <TextBox Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Foreground="White" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,0,0">
+            <Button x:Name="Delete" Width="50" Height="50" Background="#0747a6" Padding="0">
+                <materialDesign:PackIcon Kind="Delete" Width="32" Height="32" />
+            </Button>
+            <Button x:Name="Save" Width="50" Height="50" Background="#0747a6" Padding="0" Margin="30,0,0,0">
+                <materialDesign:PackIcon Kind="ContentSave" Width="32" Height="32" />
+            </Button>
+            <Button x:Name="New" Width="50" Height="50" Background="#0747a6" Padding="0" Margin="30,0,0,0">
+                <materialDesign:PackIcon Kind="NewBox" Width="32" Height="32" />
+            </Button>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

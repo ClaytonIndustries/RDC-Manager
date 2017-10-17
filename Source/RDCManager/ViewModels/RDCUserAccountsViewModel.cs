@@ -33,7 +33,7 @@ namespace RDCManager.ViewModels
             Accounts = new ObservableCollection<UserAccount>(_userAccountManager.GetUserAccounts());
         }
 
-        public void NewAccount()
+        public void New()
         {
             Accounts.Add(_userAccountManager.CreateNew());
         }

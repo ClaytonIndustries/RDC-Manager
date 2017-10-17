@@ -141,6 +141,7 @@
     <Compile Include="Models\IUserAccountManager.cs" />
     <Compile Include="Models\JsonFileAccess.cs" />
     <Compile Include="Models\RDC.cs" />
+    <Compile Include="Models\RDCGroup.cs" />
     <Compile Include="Models\RDCInstanceManager.cs" />
     <Compile Include="Models\RDCModel.cs" />
     <Compile Include="Models\UserAccount.cs" />
