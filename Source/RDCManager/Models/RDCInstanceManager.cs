@@ -56,7 +56,8 @@ namespace RDCManager.Models
                     Username = x.Username,
                     Password = x.Password,
                     Domain = x.Domain,
-                    UserAccountId = x.UserAccountId
+                    UserAccountId = x.UserAccountId,
+                    GroupId = x.GroupId
                 });
 
                 _fileAccess.Write(saveLocation, rdcs);
@@ -83,7 +84,8 @@ namespace RDCManager.Models
                                        Username = x.Username,
                                        Password = x.Password,
                                        Domain = x.Domain,
-                                       UserAccountId = x.UserAccountId
+                                       UserAccountId = x.UserAccountId,
+                                       GroupId = x.GroupId
                                    })
                                    .ToList();
             }

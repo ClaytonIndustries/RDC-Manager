@@ -60,6 +60,11 @@ namespace RDCManager.Models
             get; set;
         }
 
+        public Guid GroupId
+        {
+            get; set;
+        }
+
         public RDC(ISnackbarMessageQueue snackbarMessageQueue)
         {
             Session = new RDCWindow();

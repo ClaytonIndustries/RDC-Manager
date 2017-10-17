@@ -10,5 +10,6 @@ namespace RDCManager.Models
         public string Password { get; set; }
         public string Domain { get; set; }
         public Guid UserAccountId { get; set; }
+        public Guid GroupId { get; set; }
     }
 }
