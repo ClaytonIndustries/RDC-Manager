@@ -30,18 +30,18 @@ namespace RDCManager.Controls
                 axMsTscAxNotSafeForScripting.UserName = username;
                 axMsTscAxNotSafeForScripting.Domain = domain;
                 axMsTscAxNotSafeForScripting.ConnectingText = $"Connecting to {machineName}";
-
-                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).EncryptionEnabled = 1;
-                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).AuthenticationLevel = 2;
-                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).EnableCredSspSupport = true;
-                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).SmartSizing = true;
-                ((IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings).BitmapPersistence = 1;
-
                 axMsTscAxNotSafeForScripting.DesktopWidth = Screen.PrimaryScreen.Bounds.Width - 50;
                 axMsTscAxNotSafeForScripting.DesktopHeight = Screen.PrimaryScreen.Bounds.Height - 63;
 
-                IMsTscNonScriptable secured = (IMsTscNonScriptable)axMsTscAxNotSafeForScripting.GetOcx();
-                secured.ClearTextPassword = password;
+                IMsRdpClientAdvancedSettings7 advancedSettings = (IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings;
+                advancedSettings.EncryptionEnabled = 1;
+                advancedSettings.AuthenticationLevel = 2;
+                advancedSettings.EnableCredSspSupport = true;
+                advancedSettings.SmartSizing = true;
+                advancedSettings.BitmapPersistence = 1;
+
+                IMsTscNonScriptable secureSettings = (IMsTscNonScriptable)axMsTscAxNotSafeForScripting.GetOcx();
+                secureSettings.ClearTextPassword = password;
 
                 axMsTscAxNotSafeForScripting.Connect();
             }
