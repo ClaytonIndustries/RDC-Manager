@@ -12,6 +12,9 @@
     </UserControl.Resources>
     <Grid>
         <ContentControl Content="{Binding SelectedRDC.Session}" Visibility="{Binding SelectedRDC.IsRunning, Converter={StaticResource BooleanToVisiblityConverter}}" />
+        <StackPanel HorizontalAlignment="Center" Width="200" Background="#0747a6" VerticalAlignment="Top" Visibility="{Binding SelectedRDC.IsRunning, Converter={StaticResource BooleanToVisiblityConverter}}">
+            <TextBlock Text="{Binding SelectedRDC.DisplayName}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </StackPanel>
         <TextBlock Text="Choose an rdc to get started..." Foreground="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Visibility="{Binding NoSelectedRDC, Converter={StaticResource BooleanToVisiblityConverter}}" />
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding StoppedRDC, Converter={StaticResource BooleanToVisiblityConverter}}">
             <TextBlock Text="RDC Settings" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0,0,0,30" Foreground="LightGray" />
