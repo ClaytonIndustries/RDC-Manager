@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Caliburn.Micro;
 using MaterialDesignThemes.Wpf;
+using RDCManager.Controls;
 using RDCManager.Models;
 
 namespace RDCManager.ViewModels
@@ -22,22 +23,42 @@ namespace RDCManager.ViewModels
         }
 
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
+        private readonly IRDCGroupManager _rdcGroupManager;
 
-        public RDCGroupsViewModel(ISnackbarMessageQueue snackbarMessageQueue)
+        public RDCGroupsViewModel(ISnackbarMessageQueue snackbarMessageQueue, IRDCGroupManager rdcGroupManager)
         {
             _snackbarMessageQueue = snackbarMessageQueue;
+            _rdcGroupManager = rdcGroupManager;
         }
 
         public void New()
         {
+            RDCGroups.Add(_rdcGroupManager.CreateNew());
         }
 
         public void Save()
         {
+            string saveMessage = _rdcGroupManager.Save() ? "Changes saved" : "Failed to save";
+
+            _snackbarMessageQueue.Enqueue(saveMessage);
         }
 
-        public void Delete()
+        public async void Delete()
         {
+            if (SelectedRDCGroup != null)
+            {
+                object result = await DialogHost.Show(new Dialog());
+
+                if ((bool)result)
+                {
+                    _rdcGroupManager.Delete(SelectedRDCGroup);
+                    _rdcGroupManager.Save();
+
+                    RDCGroups.Remove(SelectedRDCGroup);
+
+                    _snackbarMessageQueue.Enqueue("RDC Group deleted and changes saved");
+                }
+            }
         }
     }
 }
