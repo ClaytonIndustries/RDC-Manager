@@ -60,6 +60,7 @@ namespace RDCManager.Bootstrappers
             _container.RegisterInstance(typeof(ISnackbarMessageQueue), null, new SnackbarMessageQueue());
             _container.RegisterInstance(typeof(IRDCInstanceManager), null, new RDCInstanceManager(_container.GetInstance<ISnackbarMessageQueue>(), _container.GetInstance<IFileAccess>()));
             _container.RegisterInstance(typeof(IUserAccountManager), null, new UserAccountManager(_container.GetInstance<IFileAccess>(), _container.GetInstance<IEncryptionManager>()));
+            _container.RegisterInstance(typeof(IRDCGroupManager), null, new RDCGroupManager(_container.GetInstance<IFileAccess>()));
 
             _container.RegisterSingleton(typeof(ShellViewModel), null, typeof(ShellViewModel));
             _container.RegisterSingleton(typeof(RDCSessionViewModel), null, typeof(RDCSessionViewModel));
