@@ -55,7 +55,7 @@ namespace RDCManager.ViewModels
         public RDCGroup SelectedRDCGroup
         {
             get { return _selectedRDCGroup; }
-            set { _selectedRDCGroup = value; NotifyOfPropertyChange(() => SelectedRDCGroup); }
+            set { _selectedRDCGroup = value; SelectedRDCGroupChanged(); NotifyOfPropertyChange(() => SelectedRDCGroup); }
         }
 
         public bool NoSelectedRDC
