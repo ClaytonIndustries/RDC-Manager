@@ -58,7 +58,7 @@ namespace RDCManager.ViewModels
         {
             get
             {
-                return SelectedUserAccount != null && SelectedUserAccount.Name == MANUAL_ENTRY_NAME;
+                return SelectedUserAccount != null && SelectedUserAccount.Id == Guid.Empty;
             }
         }
 
@@ -66,8 +66,6 @@ namespace RDCManager.ViewModels
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
         private readonly IRDCInstanceManager _rdcInstanceManager;
         private readonly IUserAccountManager _userAccountManager;
-
-        private const string MANUAL_ENTRY_NAME = "Manual Entry";
 
         public RDCSessionViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, IRDCInstanceManager rdcInstanceManager, IUserAccountManager userAccountManager)
         {
@@ -84,7 +82,7 @@ namespace RDCManager.ViewModels
             if (SelectedRDC != null)
             {
                 UserAccounts = new ObservableCollection<UserAccount>(_userAccountManager.GetUserAccounts());
-                UserAccounts.Insert(0, new UserAccount() { Name = MANUAL_ENTRY_NAME });
+                UserAccounts.Insert(0, new UserAccount() { Name = "Manual Entry", Id = Guid.Empty });
 
                 UserAccount userAccount = UserAccounts.FirstOrDefault(x => x.Id == SelectedRDC.UserAccountId);
 
@@ -160,7 +158,7 @@ namespace RDCManager.ViewModels
         {
             if (SelectedUserAccount != null)
             {
-                SelectedRDC.UserAccountId = SelectedUserAccount.Name == MANUAL_ENTRY_NAME ? Guid.Empty : SelectedUserAccount.Id;
+                SelectedRDC.UserAccountId = SelectedUserAccount.Id == Guid.Empty ? Guid.Empty : SelectedUserAccount.Id;
                 SelectedRDC.Username = SelectedUserAccount.Username;
                 SelectedRDC.Password = SelectedUserAccount.Password;
                 SelectedRDC.Domain = SelectedUserAccount.Domain;
