@@ -15,13 +15,7 @@ namespace RDCManager.ViewModels
         public RDC SelectedRDC
         {
             get { return _selectedRDC; }
-            set
-            {
-                _selectedRDC = value;
-                NotifyOfPropertyChange(() => SelectedRDC);
-                NotifyOfPropertyChange(() => NoSelectedRDC);
-                NotifyOfPropertyChange(() => StoppedRDC);
-            }
+            set { _selectedRDC = value; NotifyOfPropertyChange(() => SelectedRDC); }
         }
 
         private ObservableCollection<UserAccount> _userAccounts;
@@ -56,16 +50,6 @@ namespace RDCManager.ViewModels
         {
             get { return _selectedRDCGroup; }
             set { _selectedRDCGroup = value; SelectedRDCGroupChanged(); NotifyOfPropertyChange(() => SelectedRDCGroup); }
-        }
-
-        public bool NoSelectedRDC
-        {
-            get { return SelectedRDC == null; }
-        }
-
-        public bool StoppedRDC
-        {
-            get { return SelectedRDC != null && !SelectedRDC.IsRunning; }
         }
 
         public bool ManualUserAccountEntryEnabled
