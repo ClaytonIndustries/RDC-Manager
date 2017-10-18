@@ -18,6 +18,11 @@ namespace RDCManager.Models
 
         public string AesEncrypt(string value)
         {
+            if(string.IsNullOrWhiteSpace(value))
+            {
+                return value;
+            }
+
             AesManaged aes = new AesManaged();
             ICryptoTransform encryptor = aes.CreateEncryptor(_key, _iv);
 
@@ -36,6 +41,11 @@ namespace RDCManager.Models
 
         public string AesDecrypt(string value)
         {
+            if(string.IsNullOrWhiteSpace(value))
+            {
+                return value;
+            }
+
             AesManaged aes = new AesManaged();
             ICryptoTransform decryptor = aes.CreateDecryptor(_key, _iv);
 

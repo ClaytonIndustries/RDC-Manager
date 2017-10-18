@@ -9,13 +9,15 @@ namespace RDCManager.Models
     {
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
         private readonly IFileAccess _fileAccess;
+        private readonly IEncryptionManager _encryptionManager;
 
         private ICollection<RDC> _rdcs;
 
-        public RDCInstanceManager(ISnackbarMessageQueue snackbarMessageQueue, IFileAccess fileAccess)
+        public RDCInstanceManager(ISnackbarMessageQueue snackbarMessageQueue, IFileAccess fileAccess, IEncryptionManager encryptionManager)
         {
             _snackbarMessageQueue = snackbarMessageQueue;
             _fileAccess = fileAccess;
+            _encryptionManager = encryptionManager;
 
             Load();
         }
@@ -54,7 +56,7 @@ namespace RDCManager.Models
                     DisplayName = x.DisplayName,
                     MachineName = x.MachineName,
                     Username = x.Username,
-                    Password = x.Password,
+                    Password = _encryptionManager.AesEncrypt(x.Password),
                     Domain = x.Domain,
                     UserAccountId = x.UserAccountId,
                     GroupId = x.GroupId
@@ -82,7 +84,7 @@ namespace RDCManager.Models
                                        DisplayName = x.DisplayName,
                                        MachineName = x.MachineName,
                                        Username = x.Username,
-                                       Password = x.Password,
+                                       Password = _encryptionManager.AesDecrypt(x.Password),
                                        Domain = x.Domain,
                                        UserAccountId = x.UserAccountId,
                                        GroupId = x.GroupId
