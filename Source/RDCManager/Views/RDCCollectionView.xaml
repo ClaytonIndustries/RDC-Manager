@@ -49,10 +49,21 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <StackPanel HorizontalAlignment="Right" Margin="0,30,0,0">
-            <Button x:Name="NewRDC" Width="50" Height="50" Background="#0747a6" Padding="0">
-                <materialDesign:PackIcon Kind="NewBox" Width="32" Height="32" />
-            </Button>
-        </StackPanel>
+        <Grid Margin="0,30,0,0">
+            <StackPanel HorizontalAlignment="Left">
+                <ComboBox ItemsSource="{Binding RDCGroups}" SelectedItem="{Binding SelectedRDCGroup}" Width="250" materialDesign:HintAssist.Hint="Filter By Group" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right">
+                <Button x:Name="NewRDC" Width="50" Height="50" Background="#0747a6" Padding="0">
+                    <materialDesign:PackIcon Kind="NewBox" Width="32" Height="32" />
+                </Button>
+            </StackPanel>
+        </Grid>
     </StackPanel>
 </UserControl>
