@@ -28,6 +28,13 @@
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBox Text="{Binding SelectedRDC.DisplayName, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" materialDesign:HintAssist.Hint="Display Name" />
                         <TextBox Text="{Binding SelectedRDC.MachineName, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" materialDesign:HintAssist.Hint="Machine Name" Margin="30,0,0,0" />
+                        <ComboBox ItemsSource="{Binding RDCGroups}" SelectedItem="{Binding SelectedRDCGroup}" materialDesign:HintAssist.Hint="RDC Group" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Width="250" Margin="30,0,0,0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
                     <StackPanel Grid.Row="1" HorizontalAlignment="Center" Width="250" Margin="0,40,0,10">
                         <ComboBox ItemsSource="{Binding UserAccounts}" SelectedItem="{Binding SelectedUserAccount}" materialDesign:HintAssist.Hint="User Account" Style="{StaticResource MaterialDesignFloatingHintComboBox}">

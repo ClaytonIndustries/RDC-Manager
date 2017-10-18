@@ -44,6 +44,20 @@ namespace RDCManager.ViewModels
             }
         }
 
+        private ObservableCollection<RDCGroup> _rdcGroups;
+        public ObservableCollection<RDCGroup> RDCGroups
+        {
+            get { return _rdcGroups; }
+            private set { _rdcGroups = value; NotifyOfPropertyChange(() => RDCGroups); }
+        }
+
+        private RDCGroup _selectedRDCGroup;
+        public RDCGroup SelectedRDCGroup
+        {
+            get { return _selectedRDCGroup; }
+            set { _selectedRDCGroup = value; NotifyOfPropertyChange(() => SelectedRDCGroup); }
+        }
+
         public bool NoSelectedRDC
         {
             get { return SelectedRDC == null; }
@@ -66,8 +80,10 @@ namespace RDCManager.ViewModels
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
         private readonly IRDCInstanceManager _rdcInstanceManager;
         private readonly IUserAccountManager _userAccountManager;
+        private readonly IRDCGroupManager _rdcGroupManager;
 
-        public RDCSessionViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, IRDCInstanceManager rdcInstanceManager, IUserAccountManager userAccountManager)
+        public RDCSessionViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, IRDCInstanceManager rdcInstanceManager, IUserAccountManager userAccountManager,
+            IRDCGroupManager rdcGroupManager)
         {
             _events = events;
             _events.Subscribe(this);
@@ -75,6 +91,7 @@ namespace RDCManager.ViewModels
             _snackbarMessageQueue = snackbarMessageQueue;
             _rdcInstanceManager = rdcInstanceManager;
             _userAccountManager = userAccountManager;
+            _rdcGroupManager = rdcGroupManager;
         }
 
         protected override void OnActivate()
@@ -84,7 +101,11 @@ namespace RDCManager.ViewModels
                 UserAccounts = new ObservableCollection<UserAccount>(_userAccountManager.GetUserAccounts());
                 UserAccounts.Insert(0, new UserAccount() { Name = "Manual Entry", Id = Guid.Empty });
 
+                RDCGroups = new ObservableCollection<RDCGroup>(_rdcGroupManager.GetGroups());
+                RDCGroups.Insert(0, new RDCGroup() { Name = "None", Id = Guid.Empty });
+
                 UserAccount userAccount = UserAccounts.FirstOrDefault(x => x.Id == SelectedRDC.UserAccountId);
+                RDCGroup rdcGroup = RDCGroups.FirstOrDefault(x => x.Id == SelectedRDC.GroupId);
 
                 if (userAccount != null)
                 {
@@ -95,12 +116,23 @@ namespace RDCManager.ViewModels
                     if (SelectedRDC.UserAccountId != Guid.Empty)
                     {
                         SelectedRDC.UserAccountId = Guid.Empty;
-                        SelectedRDC.Username = string.Empty;
-                        SelectedRDC.Password = string.Empty;
-                        SelectedRDC.Domain = string.Empty;
                     }
 
                     SelectedUserAccount = UserAccounts.First();
+                }
+
+                if (rdcGroup != null)
+                {
+                    SelectedRDCGroup = rdcGroup;
+                }
+                else
+                {
+                    if (SelectedRDC.GroupId != Guid.Empty)
+                    {
+                        SelectedRDC.GroupId = Guid.Empty;
+                    }
+
+                    SelectedRDCGroup = RDCGroups.First();
                 }
             }
         }
@@ -158,10 +190,18 @@ namespace RDCManager.ViewModels
         {
             if (SelectedUserAccount != null)
             {
-                SelectedRDC.UserAccountId = SelectedUserAccount.Id == Guid.Empty ? Guid.Empty : SelectedUserAccount.Id;
+                SelectedRDC.UserAccountId = SelectedUserAccount.Id;
                 SelectedRDC.Username = SelectedUserAccount.Username;
                 SelectedRDC.Password = SelectedUserAccount.Password;
                 SelectedRDC.Domain = SelectedUserAccount.Domain;
+            }
+        }
+
+        private void SelectedRDCGroupChanged()
+        {
+            if (SelectedRDCGroup != null)
+            {
+                SelectedRDC.GroupId = SelectedRDCGroup.Id;
             }
         }
     }
