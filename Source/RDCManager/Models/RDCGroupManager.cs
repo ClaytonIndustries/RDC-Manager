@@ -17,6 +17,11 @@ namespace RDCManager.Models
             Load();
         }
 
+        public IEnumerable<RDCGroup> GetGroups()
+        {
+            return _rdcGroups;
+        }
+
         public RDCGroup CreateNew()
         {
             RDCGroup rdcGroup = new RDCGroup()

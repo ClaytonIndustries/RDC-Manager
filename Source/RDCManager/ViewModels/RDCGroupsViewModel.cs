@@ -29,6 +29,8 @@ namespace RDCManager.ViewModels
         {
             _snackbarMessageQueue = snackbarMessageQueue;
             _rdcGroupManager = rdcGroupManager;
+
+            RDCGroups = new ObservableCollection<RDCGroup>(_rdcGroupManager.GetGroups());
         }
 
         public void New()
