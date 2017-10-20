@@ -82,7 +82,13 @@ namespace RDCManager.ViewModels
 
         public void NewRDC()
         {
-            RDCs.Add(_rdcInstanceManager.CreateNew());
+            RDC rdc = _rdcInstanceManager.CreateNew();
+
+            RDCs.Add(rdc);
+
+            SelectedRDC = rdc;
+
+            RDCSelected();
         }
     }
 }
