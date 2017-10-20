@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RDCWinForm));
             this.axMsTscAxNotSafeForScripting = new AxMSTSCLib.AxMsTscAxNotSafeForScripting();
+            this.DisplayName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axMsTscAxNotSafeForScripting)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,16 +41,28 @@
             this.axMsTscAxNotSafeForScripting.Location = new System.Drawing.Point(0, 0);
             this.axMsTscAxNotSafeForScripting.Name = "axMsTscAxNotSafeForScripting";
             this.axMsTscAxNotSafeForScripting.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMsTscAxNotSafeForScripting.OcxState")));
-            this.axMsTscAxNotSafeForScripting.Size = new System.Drawing.Size(262, 260);
+            this.axMsTscAxNotSafeForScripting.Size = new System.Drawing.Size(260, 260);
             this.axMsTscAxNotSafeForScripting.TabIndex = 0;
+            // 
+            // DisplayName
+            // 
+            this.DisplayName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.DisplayName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(71)))), ((int)(((byte)(166)))));
+            this.DisplayName.ForeColor = System.Drawing.Color.White;
+            this.DisplayName.Location = new System.Drawing.Point(30, 0);
+            this.DisplayName.Name = "DisplayName";
+            this.DisplayName.Size = new System.Drawing.Size(200, 20);
+            this.DisplayName.TabIndex = 1;
+            this.DisplayName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // RDCWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DisplayName);
             this.Controls.Add(this.axMsTscAxNotSafeForScripting);
             this.Name = "RDCWinForm";
-            this.Size = new System.Drawing.Size(262, 260);
+            this.Size = new System.Drawing.Size(260, 260);
             ((System.ComponentModel.ISupportInitialize)(this.axMsTscAxNotSafeForScripting)).EndInit();
             this.ResumeLayout(false);
 
@@ -58,5 +71,6 @@
         #endregion
 
         private AxMSTSCLib.AxMsTscAxNotSafeForScripting axMsTscAxNotSafeForScripting;
+        private System.Windows.Forms.Label DisplayName;
     }
 }

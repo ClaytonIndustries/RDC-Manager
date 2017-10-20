@@ -18,9 +18,14 @@ namespace RDCManager.Controls
             {
                 Disconnected?.Invoke(this, EventArgs.Empty);
             };
+
+            axMsTscAxNotSafeForScripting.OnConnected += (s, e) =>
+            {
+                DisplayName.BringToFront();
+            };
         }
 
-        public void Connect(string machineName, string username, string password, string domain)
+        public void Connect(string machineName, string displayName, string username, string password, string domain)
         {
             if (axMsTscAxNotSafeForScripting.Connected == 0)
             {
@@ -42,6 +47,8 @@ namespace RDCManager.Controls
 
                 IMsTscNonScriptable secureSettings = (IMsTscNonScriptable)axMsTscAxNotSafeForScripting.GetOcx();
                 secureSettings.ClearTextPassword = password;
+
+                DisplayName.Text = displayName;
 
                 axMsTscAxNotSafeForScripting.Connect();
             }

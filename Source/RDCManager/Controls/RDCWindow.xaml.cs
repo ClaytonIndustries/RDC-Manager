@@ -18,9 +18,9 @@ namespace RDCManager.Controls
             RDCWinForm.Disconnected += (s,e) => Disconnected?.Invoke(this, EventArgs.Empty);
         }
 
-        public void Connect(string machineName, string username, string password, string domain)
+        public void Connect(string machineName, string displayName, string username, string password, string domain)
         {
-            RDCWinForm.Connect(machineName, username, password, domain);
+            RDCWinForm.Connect(machineName, displayName, username, password, domain);
         }
 
         public void Disconnect()

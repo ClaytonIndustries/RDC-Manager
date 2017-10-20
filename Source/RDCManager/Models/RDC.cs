@@ -83,7 +83,7 @@ namespace RDCManager.Models
             {
                 IsRunning = true;
 
-                Session.Connect(MachineName, Username, Password, Domain);
+                Session.Connect(MachineName, DisplayName, Username, Password, Domain);
             }
             catch
             {
