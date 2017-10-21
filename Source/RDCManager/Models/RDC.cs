@@ -48,6 +48,13 @@ namespace RDCManager.Models
             set { _isRunning = value; NotifyOfPropertyChange(() => IsRunning); }
         }
 
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set { _isSelected = value; NotifyOfPropertyChange(() => IsSelected); }
+        }
+
         private IRDCWindow _session;
         public IRDCWindow Session
         {

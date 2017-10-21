@@ -5,7 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:conv="clr-namespace:RDCManager.Converters"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <conv:BooleanToVisiblityConverter x:Key="BooleanToVisiblityConverter" />
+    </UserControl.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="RDC Collection" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0,0,0,30" Foreground="LightGray" />
         <Border BorderBrush="LightGray" BorderThickness="1">
@@ -20,6 +24,14 @@
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="Padding" Value="2" />
                         <Setter Property="Width" Value="250" />
+                        <!--<Setter Property="BorderThickness" Value="0" />-->
+                        <!--<Setter Property="Margin" Value="0" />-->
+                        <!--<Style.Triggers>
+                            <Trigger Property="IsSelected" Value="true" >
+                                <Setter Property="BorderThickness" Value="5" />
+                                <Setter Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>-->
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
@@ -38,7 +50,10 @@
                                 </Style>
                             </Grid.Style>
                             <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Monitor" Width="40" Height="40" VerticalAlignment="Center" Foreground="White" Margin="10" />
+                                <Grid VerticalAlignment="Center" Margin="10">
+                                    <materialDesign:PackIcon Kind="CheckboxMarkedCircle" Width="20" Height="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,6" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisiblityConverter}}" />
+                                    <materialDesign:PackIcon Kind="Monitor" Width="40" Height="40" Foreground="White" />
+                                </Grid>
                                 <StackPanel Margin="10">
                                     <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" Foreground="White" />
                                     <TextBlock Text="{Binding MachineName}" Foreground="White" />

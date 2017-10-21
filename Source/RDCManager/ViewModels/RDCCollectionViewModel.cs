@@ -77,6 +77,11 @@ namespace RDCManager.ViewModels
 
         public void RDCSelected()
         {
+            foreach(RDC rdc in RDCs)
+            {
+                rdc.IsSelected = rdc == SelectedRDC;
+            }
+
             _events.PublishOnUIThread(new RDCSelectedMessage() { SelectedRDC = SelectedRDC });
         }
 
