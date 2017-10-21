@@ -13,25 +13,17 @@
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="RDC Collection" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0,0,0,30" Foreground="LightGray" />
         <Border BorderBrush="LightGray" BorderThickness="1">
-            <ListView ItemsSource="{Binding RDCs}" SelectedItem="{Binding SelectedRDC}" MinWidth="770" MaxWidth="770" MinHeight="400" MaxHeight="400">
+            <ListView ItemsSource="{Binding RDCs}" SelectedItem="{Binding SelectedRDC}" MinWidth="830" MaxWidth="830" MinHeight="400" MaxHeight="400" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" MaxWidth="770"></WrapPanel>
+                        <WrapPanel Orientation="Horizontal" MaxWidth="830"></WrapPanel>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="Padding" Value="2" />
-                        <Setter Property="Width" Value="250" />
-                        <!--<Setter Property="BorderThickness" Value="0" />-->
-                        <!--<Setter Property="Margin" Value="0" />-->
-                        <!--<Style.Triggers>
-                            <Trigger Property="IsSelected" Value="true" >
-                                <Setter Property="BorderThickness" Value="5" />
-                                <Setter Property="BorderBrush" Value="Black" />
-                            </Trigger>
-                        </Style.Triggers>-->
+                        <Setter Property="Width" Value="270" />
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
@@ -66,7 +58,7 @@
         </Border>
         <Grid Margin="0,30,0,0">
             <StackPanel HorizontalAlignment="Left">
-                <ComboBox ItemsSource="{Binding RDCGroups}" SelectedItem="{Binding SelectedRDCGroup}" Width="250" materialDesign:HintAssist.Hint="Filter By Group" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox ItemsSource="{Binding RDCGroups}" SelectedItem="{Binding SelectedRDCGroup}" Width="300" materialDesign:HintAssist.Hint="Filter By Group" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" />

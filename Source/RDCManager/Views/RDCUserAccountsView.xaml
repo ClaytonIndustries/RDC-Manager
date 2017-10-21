@@ -9,17 +9,17 @@
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="User Accounts" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0,0,0,30" Foreground="LightGray" />
         <Border BorderBrush="LightGray" BorderThickness="1">
-            <ListView ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" MinWidth="770" MaxWidth="770" MinHeight="400" MaxHeight="400">
+            <ListView ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" MinWidth="830" MaxWidth="830" MinHeight="400" MaxHeight="400" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" MaxWidth="770"></WrapPanel>
+                        <WrapPanel Orientation="Horizontal" MaxWidth="830"></WrapPanel>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="Padding" Value="2" />
-                        <Setter Property="Width" Value="250" />
+                        <Setter Property="Width" Value="270" />
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
@@ -27,7 +27,7 @@
                         <Grid Background="#0747a6">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Width="40" Height="40" VerticalAlignment="Center" Foreground="White" Margin="10" VerticalContentAlignment="Center" />
-                                <StackPanel Margin="10" Width="150">
+                                <StackPanel Margin="10" Width="170">
                                     <TextBox Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Foreground="White" />
                                     <TextBox Text="{Binding Username, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Username" Foreground="White" />
                                     <ctrl:BindablePasswordBox PasswordPlainText="{Binding Password, Mode=TwoWay}" Foreground="White" />
