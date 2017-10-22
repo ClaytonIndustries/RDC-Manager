@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using Caliburn.Micro;
 using MaterialDesignThemes.Wpf;
@@ -16,8 +13,6 @@ namespace RDCManager.Bootstrappers
     {
         private readonly SimpleContainer _container = new SimpleContainer();
 
-        private NotifyIcon notifyIcon;
-
         public AppBootstrapper()
         {
             Initialize();
@@ -28,11 +23,6 @@ namespace RDCManager.Bootstrappers
             DisplayRootViewFor<ShellViewModel>();
 
             ConfigureMainWindow();
-
-            CreateTrayIcon();
-
-            Application.MainWindow.StateChanged += MainWindow_StateChanged;
-            Application.MainWindow.Closing += MainWindow_Closing;
         }
 
         protected override object GetInstance(Type serviceType, string key)
@@ -56,13 +46,13 @@ namespace RDCManager.Bootstrappers
             _container.PerRequest<IEncryptionManager, EncryptionManager>();
             _container.PerRequest<IWindowManager, WindowManager>();
 
-            _container.RegisterInstance(typeof(System.Windows.Application), null, App.Current);
+            _container.RegisterInstance(typeof(Application), null, App.Current);
             _container.RegisterInstance(typeof(IEventAggregator), null, new EventAggregator());
             _container.RegisterInstance(typeof(ISnackbarMessageQueue), null, new SnackbarMessageQueue());
             _container.RegisterInstance(typeof(IRDCInstanceManager), null, new RDCInstanceManager(_container.GetInstance<ISnackbarMessageQueue>(), _container.GetInstance<IFileAccess>(), _container.GetInstance<IEncryptionManager>()));
             _container.RegisterInstance(typeof(IUserAccountManager), null, new UserAccountManager(_container.GetInstance<IFileAccess>(), _container.GetInstance<IEncryptionManager>()));
             _container.RegisterInstance(typeof(IRDCGroupManager), null, new RDCGroupManager(_container.GetInstance<IFileAccess>()));
-            _container.RegisterInstance(typeof(IApplicationWrapper), null, new ApplicationWrapper(_container.GetInstance<System.Windows.Application>()));
+            _container.RegisterInstance(typeof(IApplicationWrapper), null, new ApplicationWrapper(_container.GetInstance<Application>()));
 
             _container.RegisterSingleton(typeof(ShellViewModel), null, typeof(ShellViewModel));
             _container.RegisterSingleton(typeof(RDCSessionViewModel), null, typeof(RDCSessionViewModel));
@@ -80,73 +70,6 @@ namespace RDCManager.Bootstrappers
             App.Current.MainWindow.MinWidth = 950;
             App.Current.MainWindow.MinHeight = 650;
             App.Current.MainWindow.Icon = new BitmapImage(new Uri("pack://application:,,,/RDCManager;component/Assets/WindowIcon.png"));
-
-            string[] args = Environment.GetCommandLineArgs();
-
-            if (ShouldStartMinimised())
-            {
-                App.Current.MainWindow.WindowState = WindowState.Minimized;
-                App.Current.MainWindow.Hide();
-            }
-        }
-
-        private bool ShouldStartMinimised()
-        {
-            return Environment.GetCommandLineArgs().ToList().Contains("-m");
-        }
-
-        private void CreateTrayIcon()
-        {
-            notifyIcon = new NotifyIcon();
-
-            notifyIcon.Icon = new System.Drawing.Icon(GetTrayIconPath());
-            notifyIcon.Visible = true;
-            notifyIcon.Text = "RDC Manager";
-
-            MenuItem[] menuItems = new MenuItem[2]
-            {
-                new MenuItem( "Open", TrayIconOpenClicked ),
-                new MenuItem( "Close", TrayIconCloseClicked )
-            };
-
-            notifyIcon.ContextMenu = new ContextMenu(menuItems);
-
-            notifyIcon.DoubleClick += delegate
-            {
-                Application.MainWindow.Show();
-                Application.MainWindow.WindowState = WindowState.Normal;
-                Application.MainWindow.Focus();
-            };
-        }
-
-        private string GetTrayIconPath()
-        {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets\\TrayIcon.ico");
-        }
-
-        private void TrayIconOpenClicked(object sender, EventArgs e)
-        {
-            Application.MainWindow.Show();
-            Application.MainWindow.WindowState = WindowState.Normal;
-            Application.MainWindow.Focus();
-        }
-
-        private void TrayIconCloseClicked(object sender, EventArgs e)
-        {
-            Application.MainWindow.Close();
-        }
-
-        private void MainWindow_StateChanged(object sender, EventArgs e)
-        {
-            if (Application.MainWindow.WindowState == WindowState.Minimized)
-            {
-                Application.MainWindow.Hide();
-            }
-        }
-
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            notifyIcon.Visible = false;
         }
     }
 }
