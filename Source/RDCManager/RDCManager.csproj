@@ -136,7 +136,9 @@
     <Compile Include="Converters\NullToVisiblityConverter.cs" />
     <Compile Include="Messages\RDCSelectedMessage.cs" />
     <Compile Include="Messages\StopRDCMessage.cs" />
+    <Compile Include="Models\ApplicationWrapper.cs" />
     <Compile Include="Models\EncryptionManager.cs" />
+    <Compile Include="Models\IApplicationWrapper.cs" />
     <Compile Include="Models\IEncryptionManager.cs" />
     <Compile Include="Models\IFileAccess.cs" />
     <Compile Include="Models\IRDCGroupManager.cs" />

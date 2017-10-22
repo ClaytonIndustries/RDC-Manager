@@ -1,7 +1,7 @@
-﻿using System.Windows;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using MaterialDesignThemes.Wpf;
 using RDCManager.Messages;
+using RDCManager.Models;
 
 namespace RDCManager.ViewModels
 {
@@ -24,15 +24,15 @@ namespace RDCManager.ViewModels
 
         public ISnackbarMessageQueue SnackbarMessageQueue { get; }
 
-        private readonly Application _application;
+        private readonly IApplicationWrapper _applicationWrapper;
         private readonly IEventAggregator _events;
 
-        public ShellViewModel(Application application, IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, RDCSessionViewModel rdcSessionVM, RDCCollectionViewModel rdcCollectionVM, 
-            RDCUserAccountsViewModel rdcUserAccountsVM, RDCGroupsViewModel rdcGroupsVM)
+        public ShellViewModel(IEventAggregator events, ISnackbarMessageQueue snackbarMessageQueue, IApplicationWrapper applicationWrapper, RDCSessionViewModel rdcSessionVM, 
+            RDCCollectionViewModel rdcCollectionVM, RDCUserAccountsViewModel rdcUserAccountsVM, RDCGroupsViewModel rdcGroupsVM)
         {
             DisplayName = "RDC Manager";
 
-            _application = application;
+            _applicationWrapper = applicationWrapper;
 
             _events = events;
             _events.Subscribe(this);
@@ -70,9 +70,7 @@ namespace RDCManager.ViewModels
 
         public void ToggleFullScreen()
         {
-            _application.MainWindow.WindowState = WindowState.Maximized;
-
-            _application.MainWindow.WindowStyle = _application.MainWindow.WindowStyle == WindowStyle.SingleBorderWindow ? WindowStyle.None : WindowStyle.SingleBorderWindow;
+            _applicationWrapper.ToggleFullScreen();
 
             IsFullScreen = !IsFullScreen;
         }
