@@ -56,6 +56,7 @@ namespace RDCManager.Bootstrappers
             _container.PerRequest<IEncryptionManager, EncryptionManager>();
             _container.PerRequest<IWindowManager, WindowManager>();
 
+            _container.RegisterInstance(typeof(System.Windows.Application), null, App.Current);
             _container.RegisterInstance(typeof(IEventAggregator), null, new EventAggregator());
             _container.RegisterInstance(typeof(ISnackbarMessageQueue), null, new SnackbarMessageQueue());
             _container.RegisterInstance(typeof(IRDCInstanceManager), null, new RDCInstanceManager(_container.GetInstance<ISnackbarMessageQueue>(), _container.GetInstance<IFileAccess>(), _container.GetInstance<IEncryptionManager>()));

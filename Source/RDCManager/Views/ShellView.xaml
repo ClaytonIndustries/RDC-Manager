@@ -4,7 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:conv="clr-namespace:RDCManager.Converters"
              mc:Ignorable="d" >
+    <UserControl.Resources>
+        <conv:BooleanToVisiblityConverter x:Key="BooleanToVisiblityConverter" />
+        <conv:BooleanNotToVisiblityConverter x:Key="BooleanNotToVisiblityConverter" />
+    </UserControl.Resources>
     <Grid>
         <DockPanel>
             <Grid DockPanel.Dock="Left" Background="#0747a6">
@@ -17,6 +22,12 @@
                     </Button>
                     <Button x:Name="StopCurrentRDC" Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
                         <materialDesign:PackIcon Kind="Stop" Width="32" Height="32" Foreground="White" />
+                    </Button>
+                    <Button x:Name="ToggleFullScreen" Style="{StaticResource MaterialDesignFlatButton}" Width="50" Height="50" Margin="0,30,0,0" Padding="0">
+                        <Grid>
+                            <materialDesign:PackIcon Kind="Fullscreen" Width="32" Height="32" Foreground="White" Visibility="{Binding IsFullScreen, Converter={StaticResource BooleanNotToVisiblityConverter}}" />
+                            <materialDesign:PackIcon Kind="FullscreenExit" Width="32" Height="32" Foreground="White" Visibility="{Binding IsFullScreen, Converter={StaticResource BooleanToVisiblityConverter}}" />
+                        </Grid>
                     </Button>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Bottom">
