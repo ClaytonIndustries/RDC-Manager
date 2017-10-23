@@ -201,6 +201,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_829275519E58A5DA89059641B11217A7"
+        "OwnerKey" = "8:_9A36A8A8E6C24FB9900841A32CC698D2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_85D32E549E09F98DF37BBCD38B43BCC8"
         "OwnerKey" = "8:_8F9F178A6BAC7F2384B622689775AB61"
         "MsmSig" = "8:_UNDEFINED"
@@ -227,12 +233,6 @@
         {
         "MsmKey" = "8:_8CAD4B7D9BA9338B11E7F93DF457166D"
         "OwnerKey" = "8:_FC910B062F362B688AF1BEEF527D6209"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8CDF19C735B68CB1645E12274B1ECCB7"
-        "OwnerKey" = "8:_9A36A8A8E6C24FB9900841A32CC698D2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -268,6 +268,18 @@
         "Entry"
         {
         "MsmKey" = "8:_9A45EBB24F6C2BF4900D0E593C386DA6"
+        "OwnerKey" = "8:_9A36A8A8E6C24FB9900841A32CC698D2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9F9243BFAA197E1486C31D4462591432"
+        "OwnerKey" = "8:_829275519E58A5DA89059641B11217A7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9F9243BFAA197E1486C31D4462591432"
         "OwnerKey" = "8:_9A36A8A8E6C24FB9900841A32CC698D2"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -334,7 +346,7 @@
         "Entry"
         {
         "MsmKey" = "8:_BA163217D23B5C25B52832F2DD6E03C4"
-        "OwnerKey" = "8:_FCF785130352611E15BAEE44EA156933"
+        "OwnerKey" = "8:_9F9243BFAA197E1486C31D4462591432"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -531,18 +543,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FCF785130352611E15BAEE44EA156933"
-        "OwnerKey" = "8:_8CDF19C735B68CB1645E12274B1ECCB7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FCF785130352611E15BAEE44EA156933"
-        "OwnerKey" = "8:_9A36A8A8E6C24FB9900841A32CC698D2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_FFD0B391453E8567D246F93167107AD2"
         "OwnerKey" = "8:_9A36A8A8E6C24FB9900841A32CC698D2"
         "MsmSig" = "8:_UNDEFINED"
@@ -568,13 +568,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8CDF19C735B68CB1645E12274B1ECCB7"
+        "OwnerKey" = "8:_829275519E58A5DA89059641B11217A7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FCF785130352611E15BAEE44EA156933"
+        "OwnerKey" = "8:_9F9243BFAA197E1486C31D4462591432"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1912,6 +1912,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_829275519E58A5DA89059641B11217A7"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AxInterop.MSTSCLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_829275519E58A5DA89059641B11217A7"
+                    {
+                    "Name" = "8:AxInterop.MSTSCLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AxInterop.MSTSCLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_85D32E549E09F98DF37BBCD38B43BCC8"
             {
             "AssemblyRegister" = "3:1"
@@ -2036,37 +2067,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8CDF19C735B68CB1645E12274B1ECCB7"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AxInterop.MSTSCLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_8CDF19C735B68CB1645E12274B1ECCB7"
-                    {
-                    "Name" = "8:AxInterop.MSTSCLib.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:AxInterop.MSTSCLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8F9F178A6BAC7F2384B622689775AB61"
             {
             "AssemblyRegister" = "3:1"
@@ -2143,6 +2143,37 @@
                     }
                 }
             "SourcePath" = "8:System.Linq.Queryable.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9F9243BFAA197E1486C31D4462591432"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Interop.MSTSCLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9F9243BFAA197E1486C31D4462591432"
+                    {
+                    "Name" = "8:Interop.MSTSCLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Interop.MSTSCLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
@@ -3327,37 +3358,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FCF785130352611E15BAEE44EA156933"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Interop.MSTSCLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_FCF785130352611E15BAEE44EA156933"
-                    {
-                    "Name" = "8:Interop.MSTSCLib.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Interop.MSTSCLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FFD0B391453E8567D246F93167107AD2"
             {
             "AssemblyRegister" = "3:1"
@@ -3518,70 +3518,6 @@
                     "Transitive" = "11:FALSE"
                         "Keys"
                         {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_E64A3812AAC84D5FAFA190DE40D24AF3"
-                            {
-                            "Name" = "8:MICROSOFT"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_F14046D5EA1A47679191DA35BD50C94A"
-                                    {
-                                    "Name" = "8:Windows"
-                                    "Condition" = "8:"
-                                    "AlwaysCreate" = "11:FALSE"
-                                    "DeleteAtUninstall" = "11:FALSE"
-                                    "Transitive" = "11:FALSE"
-                                        "Keys"
-                                        {
-                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_EBA0B279F31D44AFB89BD612DBFAE03D"
-                                            {
-                                            "Name" = "8:CurrentVersion"
-                                            "Condition" = "8:"
-                                            "AlwaysCreate" = "11:FALSE"
-                                            "DeleteAtUninstall" = "11:FALSE"
-                                            "Transitive" = "11:FALSE"
-                                                "Keys"
-                                                {
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_F8E7434920904795B6C02C689CA703E3"
-                                                    {
-                                                    "Name" = "8:Run"
-                                                    "Condition" = "8:"
-                                                    "AlwaysCreate" = "11:FALSE"
-                                                    "DeleteAtUninstall" = "11:FALSE"
-                                                    "Transitive" = "11:FALSE"
-                                                        "Keys"
-                                                        {
-                                                        }
-                                                        "Values"
-                                                        {
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_668675B5B0124FF5B0F4085FC234202B"
-                                                            {
-                                                            "Name" = "8:RDC Manager"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:[TARGETDIR]RDCManager.exe -m"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                "Values"
-                                                {
-                                                }
-                                            }
-                                        }
-                                        "Values"
-                                        {
-                                        }
-                                    }
-                                }
-                                "Values"
-                                {
-                                }
-                            }
                         }
                         "Values"
                         {
@@ -4028,7 +3964,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9A36A8A8E6C24FB9900841A32CC698D2"
             {
-            "SourcePath" = "8:..\\RDCManager\\obj\\Debug\\RDCManager.exe"
+            "SourcePath" = "8:..\\RDCManager\\obj\\Release\\RDCManager.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A3B2F2139EC04F33BB935AA79C10D8C2"
