@@ -68,7 +68,7 @@
             </StackPanel>
             <StackPanel HorizontalAlignment="Right">
                 <Button x:Name="NewRDC" Width="50" Height="50" Background="#0747a6" Padding="0">
-                    <materialDesign:PackIcon Kind="NewBox" Width="32" Height="32" />
+                    <materialDesign:PackIcon Kind="Plus" Width="32" Height="32" />
                 </Button>
             </StackPanel>
         </Grid>

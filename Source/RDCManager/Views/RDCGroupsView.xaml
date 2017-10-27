@@ -43,7 +43,7 @@
                 <materialDesign:PackIcon Kind="ContentSave" Width="32" Height="32" />
             </Button>
             <Button x:Name="New" Width="50" Height="50" Background="#0747a6" Padding="0" Margin="30,0,0,0">
-                <materialDesign:PackIcon Kind="NewBox" Width="32" Height="32" />
+                <materialDesign:PackIcon Kind="Plus" Width="32" Height="32" />
             </Button>
         </StackPanel>
     </StackPanel>
