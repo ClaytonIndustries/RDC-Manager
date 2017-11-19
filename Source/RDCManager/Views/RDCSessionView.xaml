@@ -14,7 +14,7 @@
     </UserControl.Resources>
     <Grid>
         <ContentControl Content="{Binding SelectedRDC.Session}" Visibility="{Binding SelectedRDC.IsRunning, Converter={StaticResource BooleanToVisiblityConverter}, FallbackValue=Collapsed}" />
-        <StackPanel HorizontalAlignment="Center" Width="200" Background="#0747a6" VerticalAlignment="Top" Visibility="{Binding SelectedRDC.IsRunning, Converter={StaticResource BooleanToVisiblityConverter}, FallbackValue=Collapsed}">
+        <StackPanel HorizontalAlignment="Center" Width="200" Background="#0078d7" VerticalAlignment="Top" Visibility="{Binding SelectedRDC.IsRunning, Converter={StaticResource BooleanToVisiblityConverter}, FallbackValue=Collapsed}">
             <TextBlock Text="{Binding SelectedRDC.DisplayName}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </StackPanel>
         <TextBlock Text="Choose an rdc to get started..." Foreground="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Visibility="{Binding SelectedRDC, Converter={StaticResource NullToVisiblityConverter}}" />
@@ -54,10 +54,10 @@
                     </StackPanel>
                 </Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
-                    <Button x:Name="Delete" Width="50" Height="50" Background="#0747a6" Padding="0">
+                    <Button x:Name="Delete" Width="50" Height="50" Background="#0078d7" Padding="0">
                         <materialDesign:PackIcon Kind="Delete"  Width="32" Height="32" />
                     </Button>
-                    <Button x:Name="Save" Width="50" Height="50" Margin="30,0,0,0" Background="#0747a6" Padding="0">
+                    <Button x:Name="Save" Width="50" Height="50" Margin="30,0,0,0" Background="#0078d7" Padding="0">
                         <materialDesign:PackIcon Kind="ContentSave"  Width="32" Height="32" />
                     </Button>
                     <Button x:Name="Start" Width="50" Height="50" Margin="30,0,0,0" Background="Green" Padding="0">

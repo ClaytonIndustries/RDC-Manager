@@ -24,7 +24,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Background="#0747a6">
+                        <Grid Background="#0078d7">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Width="40" Height="40" VerticalAlignment="Center" Foreground="White" Margin="10" VerticalContentAlignment="Center" />
                                 <StackPanel Margin="10" Width="170">
@@ -40,13 +40,13 @@
             </ListView>
         </Border>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,0,0">
-            <Button x:Name="Delete" Width="50" Height="50" Background="#0747a6" Padding="0">
+            <Button x:Name="Delete" Width="50" Height="50" Background="#0078d7" Padding="0">
                 <materialDesign:PackIcon Kind="Delete" Width="32" Height="32" />
             </Button>
-            <Button x:Name="Save" Width="50" Height="50" Background="#0747a6" Padding="0" Margin="30,0,0,0">
+            <Button x:Name="Save" Width="50" Height="50" Background="#0078d7" Padding="0" Margin="30,0,0,0">
                 <materialDesign:PackIcon Kind="ContentSave" Width="32" Height="32" />
             </Button>
-            <Button x:Name="New" Width="50" Height="50" Background="#0747a6" Padding="0" Margin="30,0,0,0">
+            <Button x:Name="New" Width="50" Height="50" Background="#0078d7" Padding="0" Margin="30,0,0,0">
                 <materialDesign:PackIcon Kind="Plus" Width="32" Height="32" />
             </Button>
         </StackPanel>
