@@ -46,7 +46,7 @@
                                     <materialDesign:PackIcon Kind="CheckboxMarkedCircle" Width="20" Height="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,6" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisiblityConverter}}" />
                                     <materialDesign:PackIcon Kind="Monitor" Width="40" Height="40" Foreground="White" />
                                 </Grid>
-                                <StackPanel Margin="10">
+                                <StackPanel Margin="10" Width="180">
                                     <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" Foreground="White" />
                                     <TextBlock Text="{Binding MachineName}" Foreground="White" />
                                 </StackPanel>
