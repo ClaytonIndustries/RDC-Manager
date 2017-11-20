@@ -47,7 +47,8 @@
             // DisplayName
             // 
             this.DisplayName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.DisplayName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(71)))), ((int)(((byte)(166)))));
+            this.DisplayName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.DisplayName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DisplayName.ForeColor = System.Drawing.Color.White;
             this.DisplayName.Location = new System.Drawing.Point(30, 0);
             this.DisplayName.Name = "DisplayName";
