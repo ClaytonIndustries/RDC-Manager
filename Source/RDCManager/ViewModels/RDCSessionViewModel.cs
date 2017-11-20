@@ -97,10 +97,7 @@ namespace RDCManager.ViewModels
                 }
                 else
                 {
-                    if (SelectedRDC.UserAccountId != Guid.Empty)
-                    {
-                        SelectedRDC.UserAccountId = Guid.Empty;
-                    }
+                    SelectedRDC.UserAccountId = Guid.Empty;
 
                     SelectedUserAccount = UserAccounts.First();
                 }
@@ -111,10 +108,7 @@ namespace RDCManager.ViewModels
                 }
                 else
                 {
-                    if (SelectedRDC.GroupId != Guid.Empty)
-                    {
-                        SelectedRDC.GroupId = Guid.Empty;
-                    }
+                    SelectedRDC.GroupId = Guid.Empty;
 
                     SelectedRDCGroup = RDCGroups.First();
                 }
@@ -175,9 +169,13 @@ namespace RDCManager.ViewModels
             if (SelectedUserAccount != null)
             {
                 SelectedRDC.UserAccountId = SelectedUserAccount.Id;
-                SelectedRDC.Username = SelectedUserAccount.Username;
-                SelectedRDC.Password = SelectedUserAccount.Password;
-                SelectedRDC.Domain = SelectedUserAccount.Domain;
+
+                if (!ManualUserAccountEntryEnabled)
+                {
+                    SelectedRDC.Username = SelectedUserAccount.Username;
+                    SelectedRDC.Password = SelectedUserAccount.Password;
+                    SelectedRDC.Domain = SelectedUserAccount.Domain;
+                }
             }
         }
 
