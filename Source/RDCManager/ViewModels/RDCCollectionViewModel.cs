@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using Caliburn.Micro;
+using RDCManager.Converters;
 using RDCManager.Messages;
 using RDCManager.Models;
 
@@ -60,6 +61,7 @@ namespace RDCManager.ViewModels
             RDCGroups.Insert(0, new RDCGroup() { Name = "All", Id = Guid.Empty });
 
             _groupView = CollectionViewSource.GetDefaultView(_rdcs);
+            _groupView.GroupDescriptions.Add(new PropertyGroupDescription("GroupId", new GroupIdConverter(_rdcGroups)));
             _groupView.Filter += (item) =>
             {
                 RDC rdc = item as RDC;
