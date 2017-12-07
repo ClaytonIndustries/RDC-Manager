@@ -58,7 +58,10 @@ namespace RDCManager.ViewModels
             RDCs = new ObservableCollection<RDC>(_rdcInstanceManager.GetRDCs());
             RDCGroups = new ObservableCollection<RDCGroup>(_rdcGroupManager.GetGroups());
 
-            RDCGroups.Insert(0, new RDCGroup() { Name = "All", Id = Guid.Empty });
+            RDCGroups.Insert(0, new RDCGroup() { Name = "All", Id = Guid.NewGuid() });
+            RDCGroups.Insert(1, new RDCGroup() { Name = "None", Id = Guid.Empty });
+
+            SelectedRDCGroup = RDCGroups.First();
 
             _groupView = CollectionViewSource.GetDefaultView(_rdcs);
             _groupView.GroupDescriptions.Add(new PropertyGroupDescription("GroupId", new GroupIdConverter(_rdcGroups)));
@@ -66,15 +69,15 @@ namespace RDCManager.ViewModels
             {
                 RDC rdc = item as RDC;
 
-                if (SelectedRDCGroup == null || SelectedRDCGroup.Id == Guid.Empty || rdc.GroupId == SelectedRDCGroup.Id)
+                if ((rdc.GroupId == Guid.Empty && SelectedRDCGroup.Name == "None") ||
+                    SelectedRDCGroup.Name == "All" ||
+                    rdc.GroupId == SelectedRDCGroup.Id)
                 {
                     return true;
                 }
 
                 return false;
             };
-
-            SelectedRDCGroup = RDCGroups.First();
         }
 
         public void RDCSelected()
