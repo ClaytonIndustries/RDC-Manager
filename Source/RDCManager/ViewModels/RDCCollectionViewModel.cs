@@ -80,6 +80,13 @@ namespace RDCManager.ViewModels
             };
         }
 
+        protected override void OnDeactivate(bool close)
+        {
+            _groupView.Filter = null;
+
+            base.OnDeactivate(close);
+        }
+
         public void RDCSelected()
         {
             foreach(RDC rdc in RDCs)
