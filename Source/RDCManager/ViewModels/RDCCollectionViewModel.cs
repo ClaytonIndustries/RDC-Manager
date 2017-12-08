@@ -55,11 +55,14 @@ namespace RDCManager.ViewModels
 
         protected override void OnActivate()
         {
-            RDCs = new ObservableCollection<RDC>(_rdcInstanceManager.GetRDCs());
             RDCGroups = new ObservableCollection<RDCGroup>(_rdcGroupManager.GetGroups());
-
             RDCGroups.Insert(0, new RDCGroup() { Name = "All", Id = Guid.NewGuid() });
             RDCGroups.Insert(1, new RDCGroup() { Name = "None", Id = Guid.Empty });
+
+            var rdcs = _rdcInstanceManager.GetRDCs()
+                                          .OrderBy(x => _rdcGroups.FirstOrDefault(y => y.Id == x.GroupId)?.Name ?? "None");
+
+            RDCs = new ObservableCollection<RDC>(rdcs);
 
             SelectedRDCGroup = RDCGroups.First();
 
