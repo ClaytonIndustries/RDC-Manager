@@ -39,7 +39,6 @@ namespace RDCManager.Controls
                 axMsTscAxNotSafeForScripting.DesktopHeight = Screen.PrimaryScreen.Bounds.Height - 63;
 
                 IMsRdpClientAdvancedSettings7 advancedSettings = (IMsRdpClientAdvancedSettings7)axMsTscAxNotSafeForScripting.AdvancedSettings;
-                advancedSettings.EncryptionEnabled = 1;
                 advancedSettings.AuthenticationLevel = 2;
                 advancedSettings.EnableCredSspSupport = true;
                 advancedSettings.SmartSizing = true;
