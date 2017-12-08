@@ -20,7 +20,9 @@ namespace RDCManager.Converters
         {
             Guid id = Guid.Parse(value.ToString());
 
-            return _groups.First(x => x.Id == id).Name;
+            RDCGroup group = _groups.FirstOrDefault(x => x.Id == id);
+
+            return group?.Name ?? "None";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

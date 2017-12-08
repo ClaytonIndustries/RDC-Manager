@@ -69,6 +69,11 @@ namespace RDCManager.ViewModels
             {
                 RDC rdc = item as RDC;
 
+                if (!_rdcGroups.Any(x => x.Id == rdc.GroupId))
+                {
+                    rdc.GroupId = Guid.Empty;
+                }
+
                 if ((rdc.GroupId == Guid.Empty && SelectedRDCGroup.Name == "None") ||
                     SelectedRDCGroup.Name == "All" ||
                     rdc.GroupId == SelectedRDCGroup.Id)
