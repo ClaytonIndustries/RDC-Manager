@@ -7,11 +7,11 @@ using RDCManager.Models;
 
 namespace RDCManager.Converters
 {
-    public class GroupIdConverter : IValueConverter
+    public class GroupIdToNameConverter : IValueConverter
     {
         private readonly IEnumerable<RDCGroup> _groups;
 
-        public GroupIdConverter(IEnumerable<RDCGroup> groups)
+        public GroupIdToNameConverter(IEnumerable<RDCGroup> groups)
         {
             _groups = groups;
         }

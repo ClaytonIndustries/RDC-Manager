@@ -5,7 +5,7 @@ using RDCManager.Models;
 
 namespace RDCManager.ViewModels
 {
-    public class ShellViewModel : Conductor<IScreen>.Collection.OneActive, IHandle<RDCSelectedMessage>
+    public class ShellViewModel : Conductor<IScreen>.Collection.OneActive, IHandle<SwitchViewMessage>
     {
         private bool _isFullScreen;
         public bool IsFullScreen
@@ -91,9 +91,17 @@ namespace RDCManager.ViewModels
             }
         }
 
-        public void Handle(RDCSelectedMessage message)
+        public void Handle(SwitchViewMessage message)
         {
-            ShowRDCSession();
+            switch(message.View)
+            {
+                case Models.View.Collection:
+                    ShowRDCList();
+                    break;
+                case Models.View.Session:
+                    ShowRDCSession();
+                    break;
+            }
         }
     }
 }

@@ -67,7 +67,7 @@ namespace RDCManager.ViewModels
             SelectedRDCGroup = RDCGroups.First();
 
             _groupView = CollectionViewSource.GetDefaultView(_rdcs);
-            _groupView.GroupDescriptions.Add(new PropertyGroupDescription("GroupId", new GroupIdConverter(_rdcGroups)));
+            _groupView.GroupDescriptions.Add(new PropertyGroupDescription("GroupId", new GroupIdToNameConverter(_rdcGroups)));
             _groupView.Filter += (item) =>
             {
                 RDC rdc = item as RDC;
@@ -103,6 +103,7 @@ namespace RDCManager.ViewModels
             }
 
             _events.PublishOnUIThread(new RDCSelectedMessage() { SelectedRDC = SelectedRDC });
+            _events.PublishOnUIThread(new SwitchViewMessage() { View = Models.View.Session });
         }
 
         public void NewRDC()
