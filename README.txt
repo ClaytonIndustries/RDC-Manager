@@ -1,1 +1,0 @@
-RDC Manager Readme File
