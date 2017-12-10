@@ -13,3 +13,7 @@ Save, manage and access all your rdc connections from one window
 
  * Wpf
  * [Material Design In XAML Toolkit](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit) for the ui style
+ 
+## Screenshots
+
+![Alt text](Images/RDCSession.png "RDC Session")
