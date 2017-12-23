@@ -1,3 +1,4 @@
+
 # RDC Manager
 
 Save, manage and access all your rdc connections from one window
@@ -11,6 +12,7 @@ Save, manage and access all your rdc connections from one window
 
 ## Built with
 
+ * C#
  * Wpf
  * [Material Design In XAML Toolkit](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit) for the ui style
  
