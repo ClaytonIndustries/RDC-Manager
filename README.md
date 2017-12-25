@@ -9,7 +9,6 @@ Save, manage and access all your rdc connections from one window
  * Visual Studio 2017 / 2015
  * .NET Framework 4.6.1
 
-
 ## Built with
 
  * C#
